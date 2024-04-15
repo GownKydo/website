@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Tags on Sitio de ejemplo</title>
-        <link>https://corniergown.com/tags/</link>
-        <description>Recent content in Tags on Sitio de ejemplo</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>es</language>
-        <copyright>Example Person</copyright><atom:link href="https://corniergown.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    </channel>
+  <channel>
+    <title>Tags on Gerardo H. Gomez</title>
+    <link>https://corniergown.com/tags/</link>
+    <description>Recent content in Tags on Gerardo H. Gomez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    <copyright>Gerardo H. Gomez</copyright>
+    <atom:link href="https://corniergown.com/tags/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
 </rss>

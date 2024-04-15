@@ -2,8 +2,8 @@ baseurl: https://corniergown.com
 languageCode: es-mx
 theme: stack
 paginate: 3
-title: Example Site
-copyright: Example Person
+title: CornierGown | Blog
+copyright: Gerardo H. Gomez
 
 # Theme i18n support
 # Available values: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
@@ -16,26 +16,26 @@ hasCJKLanguage: false
 languages:
     es:
         languageName: Español
-        title: Sitio de ejemplo
+        title: Gerardo H. Gomez
         weight: 1
         params:
-            description: Descripción de ejemplo
+            description: Apasionado por la tecnología y la programación.
     en:
         languageName: English
-        title: Example Site
+        title: Gerardo H. Gomez
         weight: 2
         params:
             description: Example description
     zh-cn:
         languageName: 中文
-        title: 演示站点
+        title: Gerardo H. Gomez
         weight: 3
         params:
             description: 演示说明
     ar:
         languageName: عربي
         languagedirection: rtl
-        title: موقع تجريبي
+        title: Gerardo H. Gomez
         weight: 4
         params:
             description: وصف تجريبي

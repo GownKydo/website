@@ -24,28 +24,6 @@
                 href="https://corniergown.com/zh-cn/categories/"
                 />
   </url><url>
-    <loc>https://corniergown.com/zh-cn/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://corniergown.com/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://corniergown.com/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ar"
-                href="https://corniergown.com/ar/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://corniergown.com/zh-cn/tags/"
-                />
-  </url><url>
     <loc>https://corniergown.com/zh-cn/</loc>
     <xhtml:link
                 rel="alternate"
@@ -66,6 +44,28 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://corniergown.com/zh-cn/"
+                />
+  </url><url>
+    <loc>https://corniergown.com/zh-cn/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://corniergown.com/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://corniergown.com/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ar"
+                href="https://corniergown.com/ar/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://corniergown.com/zh-cn/tags/"
                 />
   </url>
 </urlset>
