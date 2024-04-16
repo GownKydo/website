@@ -1,5 +1,5 @@
 baseurl: https://corniergown.com
-languageCode: es-mx
+languageCode: en-us
 theme: stack
 paginate: 3
 title: CornierGown | Blog
@@ -7,7 +7,7 @@ copyright: Gerardo H. Gomez
 
 # Theme i18n support
 # Available values: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
-DefaultContentLanguage: es
+DefaultContentLanguage: en
 
 # Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
 # This will make .Summary and .WordCount behave correctly for CJK languages.
@@ -25,20 +25,20 @@ languages:
         title: Gerardo H. Gomez
         weight: 2
         params:
-            description: Example description
-    zh-cn:
-        languageName: 中文
-        title: Gerardo H. Gomez
-        weight: 3
-        params:
-            description: 演示说明
-    ar:
-        languageName: عربي
-        languagedirection: rtl
-        title: Gerardo H. Gomez
-        weight: 4
-        params:
-            description: وصف تجريبي
+            description: Passionate about technology and programming
+#    zh-cn:
+#        languageName: 中文
+#        title: Gerardo H. Gomez
+#        weight: 3
+#        params:
+#            description: 演示说明
+#    ar:
+#        languageName: عربي
+#        languagedirection: rtl
+#        title: Gerardo H. Gomez
+#        weight: 4
+#        params:
+#            description: وصف تجريبي
 
 services:
     # Change it to your Disqus shortname before using
