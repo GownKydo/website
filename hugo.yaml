@@ -13,7 +13,7 @@ DefaultContentLanguage: en
 # This will make .Summary and .WordCount behave correctly for CJK languages.
 hasCJKLanguage: false
 
-#languages:
+languages:
 #    es:
 #        languageName: Español
 #        title: Gerardo H. Gomez
