@@ -17,25 +17,18 @@
       <description>Bienvenid@s a mi blog! Un pequeño rincón de la Informática, programacion y ciberseguridad&#xA;¡Hola a todos!&#xA;Bienvenidos a mi blog sobre ciberseguridad y programación en C++, Python y Bash. Mi nombre es Gerardo Hernandez Gomez y tengo 18 años.&#xA;Soy un apasionado de la programación y la ciberseguridad. Desde hace unos años, he estado explorando el mundo de la informática, y a lo largo de los años, he adquirido habilidades en programación y me entusiasma compartir mi conocimiento y experiencias contigo a través de este blog.</description>
     </item>
     <item>
+      <title>About</title>
+      <link>https://corniergown.com/p/about/</link>
+      <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://corniergown.com/p/about/</guid>
+      <description>¡Bienvenidos a este rincon de la informatica! Les invito a adentrarse en el apasionante universo de la ciberseguridad y la programación. Desde la meticulosa exploración de técnicas de hacking ético hasta el análisis de las más recientes tendencias en programación segura, este blog ha sido meticulosamente creado para compartir experiencias y conocimientos en áreas dinámicas de la informática.&#xA;Saludos. Mi nombre es Gerardo Hernández Gómez y es un honor para mí presentarles este espacio digital.</description>
+    </item>
+    <item>
       <title>Archives</title>
       <link>https://corniergown.com/p/archives/</link>
       <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
       <guid>https://corniergown.com/p/archives/</guid>
       <description></description>
-    </item>
-    <item>
-      <title>About</title>
-      <link>https://corniergown.com/p/about/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://corniergown.com/p/about/</guid>
-      <description>Written in Go, Hugo is an open source static site generator available under the Apache License 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&#xA;Hugo makes use of a variety of open source projects including:&#xA;https://github.com/yuin/goldmark https://github.</description>
-    </item>
-    <item>
-      <title>Links</title>
-      <link>https://corniergown.com/p/links/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://corniergown.com/p/links/</guid>
-      <description>To use this feature, add links section to frontmatter.&#xA;This page&amp;rsquo;s frontmatter:&#xA;1 2 3 4 5 6 7 8 9 links: - title: GitHub description: GitHub is the world&amp;#39;s largest software development platform. website: https://github.com image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png - title: TypeScript description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. website: https://www.typescriptlang.org image: ts-logo-128.jpg image field accepts both local and external images.</description>
     </item>
     <item>
       <title>Search</title>
