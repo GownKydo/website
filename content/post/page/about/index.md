@@ -1,6 +1,6 @@
 ---
 title: About
-description: Explora el mundo de la ciberseguridad y la programación conmigo. Bienvenido a mi espacio digital.
+description: Explora el mundo de la ciberseguridad y la programación conmigo. Bienvenido a mi blog!.
 date: '2023-11-28'
 aliases:
   - about-us
