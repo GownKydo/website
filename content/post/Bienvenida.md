@@ -13,7 +13,7 @@ draft = false
 
 <br>¡Hola a todos!
 
-Bienvenidos a mi blog sobre ciberseguridad y programación en C++, Python y Bash. Mi nombre es Gerardo Hernandez Gomez y tengo 18 años.
+Bienvenidos a mi blog sobre ciberseguridad y programación en C++, Python y Bash. Mi nombre es Gerardo Hernandez Gomez.
 
 Soy un apasionado de la programación y la ciberseguridad. Desde hace unos años, he estado explorando el mundo de la informática, y a lo largo de los años, he adquirido habilidades en programación y me entusiasma compartir mi conocimiento y experiencias contigo a través de este blog.
 
