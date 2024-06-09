@@ -10,6 +10,7 @@ tags = [
     "progtamming",
     "bash",
 ]
+image = "CronJob.jpg"
 +++
 
 <br>
