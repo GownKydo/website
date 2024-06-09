@@ -4,11 +4,12 @@ date = 2024-06-06
 categories = [
     "Linux",
     "CyberSecurity",
+    "bash",
 ]
 tags = [
-    "analysis",
-    "progtamming",
-    "bash",
+    "process analysis",
+    "programming",
+    "algorithms",
 ]
 image = "CronJob.jpg"
 +++
@@ -19,7 +20,7 @@ image = "CronJob.jpg"
 
 En esta ocasión, vamos a abordar el fascinante tema de las tareas cron, como se indica en el título. Para comenzar, vamos a adentrarnos en el concepto de qué es una tarea cron y su importancia en la administración de sistemas
 
-### ¿Qué es una tarea cron?
+## ¿Qué es una tarea cron?
 
 Cron es un demonio que ejecuta comandos en horarios definidos por el administrador. Está diseñado para simplificar tareas repetitivas que, de otro modo, tendrían que ejecutarse manualmente.
 
@@ -32,17 +33,19 @@ A pesar de sus beneficios cron tiene sus limitaciones.
 1. **Ejecucion en redes distribuidas:** Cron no está diseñado para ejecutarse en una red distribuida, lo que significa que no puede coordinar tareas entre varios servidores o terminales de red. Esta limitación puede ser un inconveniente en entornos de alta disponibilidad y sistemas distribuidos.
 2. **Capacidades avanzadas de gestion:** Aunque cron es una herramienta poderosa y sencilla, no cuenta con capacidades avanzadas para la gestión de tareas, como el manejo de dependencias entre tareas o la detección y recuperación automática de fallos. Esto puede limitar su uso en sistemas más complejos donde estas características son esenciales.
 
-### Formato/sintaxis de una tarea cron
+### Estructura de una tarea cron
 
-Las tareas cron tienen la siguiente sintaxis:
+Las tareas cron tienen la siguiente estrucutra, estan divididas en 5 grupos y dos mas que identifican que usuario esta ejecutando la tarea y el comando o script que se esta corriendo.
 
-| <center> minutes </center> | <center> hours </center> | <center> day month </center> | <center> month </center> | <center> day week </center> | <center> user </center> | <center> script </center>        |
+| <center> minutes </center> | <center> hours </center> | <center> day month </center> | <center> month </center> | <center> day week </center> | <center> user </center> | <center> script/command </center>        |
 | -------------------------- | ------------------------ | ---------------------------- | ------------------------ | --------------------------- | ----------------------- | -------------------------------- |
 | <center> 0-59 </center>    | <center> 0-23 </center>  | <center> 1-31 </center>      | <center> 1-12 </center>  | <center> 0-6 </center>      | <center> user </center> | <center> /path/test.sh </center> |
 | <center>  * </center>      | <center> * </center>     | <center> * </center>         | <center> * </center>     | <center> * </center>        | <center>  </center>     |                                  |
 
 
 **Caracteres especiales:**
+
+Tambien tenemos los caracteres especiales, los cuales nos ayudar a facilitar la redaccion de las tareas o crear procesos mucho mas complejos y como tal mucho mas precisos.
 
 | <center> Caracter </center> | <center> Definicion </center> |
 | -------------------- | -------------------------------------------- |
@@ -51,14 +54,13 @@ Las tareas cron tienen la siguiente sintaxis:
 | <center> , </center> | Seleccionar multiples valores|
 | <center> - </center> | Especificar un rango especifico|
 
+Una vez sabemos todo esto, ya podremos empezar a crear nuestras propias reglas. Pero es probable que, si queremos hacer alguna muy compleja, sea necesario tener algunos conocimientos de programación. Sobre todo, para comprender la estructura de cómo se va a ejecutar alguna tarea concreta. Y en caso de que falle, sabes donde se puede estar produciendo el problema en cuestión.
 
-### Practicando con tareas cron
+## Practicando con tareas cron
 
-_Es importante mencionar que las pruebas de esta práctica se realizan en sistemas operativos basados en Arch. Por lo tanto, algunos comandos pueden diferir de aquellos utilizados en otros sistemas operativos basados en Debian._
+_Es importante mencionar que las pruebas de esta práctica se realizan en sistemas operativos basados en Arch. Por lo tanto, algunos comandos pueden diferir de aquellos utilizados en otros sistemas operativos basados en Debian o sistemas basados en RHE(red hat enterprise)._
 
-Para empezar, debemos convertirnos en usuarios root para poder administrar las tareas cron. Una vez con permisos de root, navegamos a la ruta `/etc/cron.d`, donde se encuentran las tareas cron. Dentro del directorio _cron.d_, verificaremos el estado de nuestro demonio cron con el siguiente comando: `systemctl status cronie`.
-
-En sistemas basados en Debian, se debe cambiar la palabra _cronie_ por _cron_. Una vez escrito el comando, obtendremos el siguiente resultado:
+Para empezar, debemos convertirnos en usuarios root para poder administrar las tareas cron. Una vez con permisos de root, navegamos a la ruta `/etc/cron.d`, donde se encuentran las tareas. Dentro del directorio, verificaremos el estado de nuestro demonio cron con el siguiente comando: `systemctl status cronie`. En sistemas basados en Debian, se debe cambiar la palabra _cronie_ por _cron_, o de igual forma pueden usar el siguiente comando `service cron status`. Una vez escrito el comando, obtendremos el siguiente resultado:
 
 ```bash
 ● cronie.service - Command Scheduler
@@ -80,18 +82,16 @@ Jun 07 16:04:45 kinghost crond[6880]: (CRON) bad command (/etc/cron.d/0hourly)
 Jun 07 16:04:45 kinghost crond[6880]: (CRON) INFO (@reboot jobs will be run at computer's startup.)
 ```
 
-Aquí podemos notar que el servicio ya está activado. Si en tu sistema está desactivado, escribe el siguiente comando para activarlo: `systemctl start cronie`. Posteriormente, vuelve a escribir el comando para verificar el estado de nuestro demonio cron y ya debería estar activo.
+Aquí podemos notar que el servicio ya está activado. Si en tu sistema está desactivado, escribe el siguiente comando para activarlo: `systemctl start cronie`. En sistemas de debian tambien podemos usar esta alternativa `service cron start`. Posteriormente, vuelve a escribir el comando para verificar el estado de nuestro demonio cron y ya debería estar activo.
 
-#### Creando una tarea cron
+### Creando una tarea cron
 
-Ahora vamos a crear una tarea cron. Para este caso, dentro de la ruta en la que estamos, crearemos un archivo que puede llevar el nombre que desees. En mi caso, lo llamaré "tarea". Escribe el siguiente comando para crear el archivo: `touch tarea`
+Ahora vamos a crear una tarea cron. Para este caso, dentro de la ruta en la que estamos que es `/etc/cron.d`, crearemos un archivo que puede llevar el nombre que desees. En mi caso, lo llamaré "_tarea_". Escribiremos el siguiente comando para crear el archivo: `touch tarea`
 
-Luego, ábrelo con el editor de texto de tu preferencia. Una vez dentro, escribe la estructura de una tarea cron, que está dividida en cinco campos: minutos, horas, días del mes, meses y días de la semana.
-
-Una vez dentro del editor de preferencia, le diré a cron que quiero que se ejecute mi tarea cada minuto, siguiendo la siguiente estructura:
+Luego, procedemos a abrirlo con el editor de texto de preferencia y una vez dentro, escribimos la estructura de una tarea cron, que está dividida en cinco campos como lo explique anteriormente, colocare los 5 campos con asteriscos, esto le indica a el servicio cron que quiero que se ejecute cada minuto. Esta seria la estructura de nuestro archivo:
 
 ```bash
-* * * * * root /home/user/Desktop/file.sh
+* * * * * root /home/gerardokydo/Desktop/file.sh
 ```
 
 Y como sabemos que este archivo "file.sh" no existe, vamos a crearlo. Nos dirigimos a la ruta "Desktop" de nuestro usuario normal y creamos el archivo usando el comando `touch file.sh`. Una vez que el archivo esté creado, le daremos permisos de ejecución con el siguiente comando: `chmod +x file.sh`. Luego procedemos a editarlo con nuestro editor preferido y escribimos la tarea que deseamos que realice. A modo de ejemplo, escribimos lo siguiente:
@@ -104,17 +104,15 @@ rm -rf /tmp/*
 
 ```
 
-En este script, `sleep 10` hace una pausa de 10 segundos y `rm -rf /tmp/*` borra todos los archivos en el directorio `/tmp/`.
+En este script, `sleep 10` hace una pausa de 10 segundos y `rm -rf /tmp/*` borra todos los archivos en el directorio `/tmp/`. Guardamos el archivo y en este punto nuestro demonio cron debería estar ejecutándose correctamente.
 
-Guardamos el archivo y en este punto nuestro demonio cron debería estar ejecutándose correctamente.
-
-### Abuso de tareas cron
+## Abuso de tareas cron
 
 Es importante destacar que, en términos de seguridad, es crucial administrar adecuadamente el acceso al sistema cron. Cualquier usuario con permisos puede modificar su propio archivo crontab, lo que podría permitir la ejecución de comandos con privilegios de usuario. Por lo tanto, se recomienda limitar el acceso a cron solo a usuarios autorizados y revisar regularmente los archivos de crontab para evitar abusos o errores.
 
 A continuación, presentamos un ejemplo de abuso de tareas cron. Este ejemplo se realiza con fines educativos en un entorno controlado y sin afectar a nadie. La intención es demostrar cómo un uso indebido de cron puede comprometer la seguridad del sistema y cómo podemos prevenirlo mediante buenas prácticas.
 
-#### Deteccion de tareas cron
+### Deteccion de tareas cron
 
 Vamos a realizar una detección de tareas cron con el objetivo de buscar archivos en la raíz que puedan ser modificados por un usuario sin permisos de root. Esto se puede hacer de dos formas: manualmente mediante un script en bash, o utilizando una herramienta en Linux llamada **pspy** que está escrita en Go. Sin embargo, para entender mejor cómo detectar tareas cron, lo haremos de forma manual, lo que también nos ayudará a comprender la lógica subyacente.
 
@@ -133,7 +131,7 @@ while true; do
     new_process=$(ps -eo command)
     
     diff_result=$(diff <(echo "$old_process") <(echo "$new_process"))
-	echo "$diff_result" | grep "[\>\<]" | grep -v "kworker"
+    echo "$diff_result" | grep "[\>\<]" | grep -v "kworker"
     
     old_process=$new_process
     
@@ -214,7 +212,7 @@ Con esto, hemos demostrado la importancia de una correcta configuración de las 
 
 <br>
 
-#### Referencias
+## Referencias
 
 * [systemctl(1) — Linux manual page](https://www.man7.org/linux/man-pages/man1/systemctl.1.html)
 
