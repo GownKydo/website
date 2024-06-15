@@ -2,13 +2,13 @@
 
 +++
 title = 'Comandos Basicos en Linux - Parte 1'
-description = "Introduccion para comenzar a usar sistemas GNU/Linux como un chad"
+description = "Introduccion para comenzar a usar sistemas GNU/Linux como todo un chad"
 date = 2024-01-10
 categories = [
     "Linux",
     "bash",
 ]
-  
+
 image = "wallpaper.jpg"
 +++
 
@@ -21,13 +21,13 @@ Espero que este post te sea de gran ayuda y te anime a explorar más sobre el fa
 
 Nos diriguimos a la siguiente pagina [over the wire](https://overthewire.org/wargames/bandit/), nos llevara a esta pagina:
 
-![Menu](/content/post/BasicCommandsOnLinuxPart1/img/level0/Menu.png)
+![Menu](/img/level0/bandit0Menu.png)
 
 # Level 0 -> Level 1
 
 Aquí puedes leer más sobre lo que trata Bandit y en qué consiste. Nos dirigiremos al nivel 0, donde podemos ver las instrucciones para acceder como bandit0 y conectarnos al servidor mediante el comando SSH. Una vez que hemos leído las instrucciones, pasamos al siguiente nivel. En el siguiente nivel, podemos observar que nos dan las siguientes instrucciones.
 
-![bandit0](/content/post/BasicCommandsOnLinuxPart1/img/level0/bandit0.png)
+![bandit0](/img/level0/bandit0.png)
 
 Aquí ya podemos observar que las instrucciones nos indican que la contraseña para el siguiente nivel se encuentra en un archivo llamado "_readme_", localizado en el directorio home de nuestro usuario "_bandit0_". Vamos a confirmarlo. Como aún no me he conectado al juego, vamos a hacerlo.
 
@@ -35,7 +35,7 @@ En el nivel 0 se especifica que se debe usar `ssh` para acceder al servidor. Nos
 
 Una vez dentro del servidor, comprobamos que somos el usuario bandit0 con el comando `whoami`. Este comando nos sirve para saber qué usuario está usando el sistema actualmente y, si todo está bien, podemos observar claramente que se trata del usuario "bandit0". Posteriormente, escribimos el comando `ls` para listar el contenido de nuestro directorio home y ahí es donde se encuentra el archivo "_readme_" que contiene la contraseña para acceder a "bandit1". Escribimos el comando `cat readme` para leer el contenido de este archivo y, como se puede observar, esa es la contraseña para el siguiente nivel, la copiamos en nuestro portapapeles y del servidor con el comando `exit`
 
-![level0](/content/post/BasicCommandsOnLinuxPart1/img/level0/level0.png)
+![level0](/img/level0/level0.png)
 
 # Level 1 -> Level 2
 
@@ -43,7 +43,7 @@ Para el siguiente nivel, vamos a acceder como bandit1. Vamos a usar el mismo com
 
 Las instrucciones para el siguiente nivel son las siguientes.
 
-![instructions_level1](/content/post/BasicCommandsOnLinuxPart1/img/level1/instructions_level1.png)
+![instructions_level1](/img/level1/instructions_level1.png)
 
 Nos especifica que la contraseña está guardada en un archivo localizado en el directorio home con el nombre '-'.
 
@@ -57,13 +57,13 @@ El desafío parece simple, pero el problema surge cuando escribimos el comando `
 
 Observamos que, de cualquiera de estas maneras, obtenemos la contraseña.
 
-![level1](/content/post/BasicCommandsOnLinuxPart1/img/level1/level1.png)
+![level1](/img/level1/level1.png)
 
 Aqui conluimos con este nivel, nos salimos y accedemos al siguiente.
 
 # Level 2 -> level 3
 
-![instructions](/content/post/BasicCommandsOnLinuxPart1/img/level2/instructions.png)
+![instructions](/img/level2/instructions.png)
 
 Para este nivel, observamos que hay un archivo llamado "_spaces in this filename_". Para poder leer este tipo de archivos con espacios, necesitamos escapar cada espacio con el carácter especial barra inversa `\`, quedando así el comando: `cat spaces\ in\ this\ filename`. De igual forma, podemos ahorrarnos esto usando la tecla tab, la cual nos autocompleta lo mencionado anteriormente.
 
@@ -71,7 +71,7 @@ Otra forma de hacer este proceso es usando comillas dobles, quedando de esta man
 
 Pero además de hacer eso, también podemos ahorrarnos escribir el nombre. Para hacer esto más rápido, hacemos uso del carácter especial asterisco `*`, el cual interpreta cualquier cosa, quedando así el comando: `cat *filename`. De esta forma, le indicamos que queremos leer todos los archivos que terminen en "filename". Igualmente, se puede modificar el orden del asterisco, por ejemplo: `cat spaces*`, aquí se indica que queremos leer todos los archivos que comiencen con el nombre "spaces". Cabe aclarar que este comando es mejor usarlo cuando sabemos que solo existe un archivo con ese nombre; en caso contrario, listará el contenido de todos los archivos que encuentre.
 
-![level2](/content/post/BasicCommandsOnLinuxPart1/img/level2/level2.png)
+![level2](/img/level2/level2.png)
 
 Ahora que tenemos la contraseña nos dirigimos al siguiente nivel.
 
@@ -81,7 +81,7 @@ Para este nivel la contraseña esta guardada en un archivo oculto dentro del dir
 
 Este nivel es muy simple, si listamos el contenido de la carpeta con el comando `ls`, sabremos que a simple vista nos e ve nada, para ello vamos a hacer uso de los parametros de dicho comando, usaremos el parametro `-a` para listar todo lo que se encuentre a dentro quedando asi el comando: `ls -a inhere`. Y ahora podemos observar que hay un archivo con el nombre "...Hiding-From-You", con el comando cat revisamos el contenido y tendremos la contraseña.
 
-![download.png](/content/post/BasicCommandsOnLinuxPart1/img/level3/download.png)
+![download.png](/img/level3/download.png)
 
 # Level 4 -> level 5
 
@@ -99,7 +99,7 @@ El comando `xargs` lee los argumentos desde la entrada estándar. Por ejemplo, s
 
 Esto creará los archivos `file1.txt`, `file2.txt`, y `file3.txt`
 
-![ejemplo.png](/content/post/BasicCommandsOnLinuxPart1/img/level4/ejemplo.png)
+![ejemplo.png](/img/level4/ejemplo.png)
 
 Lo que estamos haciendo es lo siguiente: dada la salida del comando `echo`, queremos crear archivos con el nombre de dicha salida. Entonces, se ejecuta `xargs touch` y el resultado es que se crean tres archivos con los nombres `file1.txt`, `file2.txt`, etc.
 
@@ -109,7 +109,7 @@ Bien, una vez explicado esto, utilizamos lo que sabemos con el comando `find`. V
 
 Si seguimos los pasos hasta aquí, ya tendremos listados todos los archivos y notamos que hay uno que es de tipo ASCII. Es el único dentro del directorio `inhere`. Por lo tanto, abrimos ese archivo con el comando `cat` y observamos que contiene la contraseña para el siguiente nivel.
 
-![level4](/content/post/BasicCommandsOnLinuxPart1/img/level4/level4.png)
+![level4](img/level4/level4.png)
 
 # Level 5 -> 6
 
@@ -139,11 +139,11 @@ Usando `cat` de manera normal, el siguiente comando seria este:
 
 `cat inhere/maybehere07/.file2`
 
-![metodos.png](/content/post/BasicCommandsOnLinuxPart1/img/level5/metodos.png)
+![metodos.png](/img/level5/metodos.png)
 
 Ambas maneras nos daran la contraseña, de igual manera puedes seguir buscando para tener un formato mas limpio con el comando xargs, como se ve a continuacion.
 
-![ejemplo](/content/post/BasicCommandsOnLinuxPart1/img/level5/ejemplo.png)
+![ejemplo](/img/level5/ejemplo.png)
 
 Una vez obtuvimos la contraseña nos vamos para el siguiente nivel.  
 
