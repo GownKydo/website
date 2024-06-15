@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="¡Hola a todos! En esta ocasión, vamos a abordar el fascinante tema de las tareas cron, como se indica en el título. Para comenzar, vamos a adentrarnos en el concepto de qué es una tarea cron y su importancia en la administración de sistemas ¿Qué es una tarea cron? Cron es un demonio que ejecuta comandos en horarios definidos por el administrador. Está diseñado para simplificar tareas repetitivas que, de otro modo, tendrían que ejecutarse manualmente.">
+<title>Administracion de tareas cron</title>
+
+<link rel='canonical' href='http://localhost:1313/p/administracion-de-tareas-cron/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Administracion de tareas cron">
+<meta property='og:description' content="¡Hola a todos! En esta ocasión, vamos a abordar el fascinante tema de las tareas cron, como se indica en el título. Para comenzar, vamos a adentrarnos en el concepto de qué es una tarea cron y su importancia en la administración de sistemas ¿Qué es una tarea cron? Cron es un demonio que ejecuta comandos en horarios definidos por el administrador. Está diseñado para simplificar tareas repetitivas que, de otro modo, tendrían que ejecutarse manualmente.">
+<meta property='og:url' content='http://localhost:1313/p/administracion-de-tareas-cron/'>
+<meta property='og:site_name' content='Gerardo H. Gomez'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='process analysis' /><meta property='article:tag' content='programming' /><meta property='article:tag' content='algorithms' /><meta property='article:published_time' content='2024-06-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-06-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/administracion-de-tareas-cron/CronJob.jpg' />
+<meta name="twitter:site" content="@corniergown">
+    <meta name="twitter:creator" content="@corniergown"><meta name="twitter:title" content="Administracion de tareas cron">
+<meta name="twitter:description" content="¡Hola a todos! En esta ocasión, vamos a abordar el fascinante tema de las tareas cron, como se indica en el título. Para comenzar, vamos a adentrarnos en el concepto de qué es una tarea cron y su importancia en la administración de sistemas ¿Qué es una tarea cron? Cron es un demonio que ejecuta comandos en horarios definidos por el administrador. Está diseñado para simplificar tareas repetitivas que, de otro modo, tendrían que ejecutarse manualmente."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/administracion-de-tareas-cron/CronJob.jpg' />
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/PictureBlog_hu4df1048b6411433b7a83ab29f4569ade_384176_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Gerardo H. Gomez</a></h1>
+            <h2 class="site-description">Apasionado por la tecnologia y la programación.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/corniergown'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/corniergown'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#hola-a-todos">¡Hola a todos!</a></li>
+    <li><a href="#qué-es-una-tarea-cron">¿Qué es una tarea cron?</a>
+      <ol>
+        <li><a href="#limitaciones-de-una-tarea-cron">Limitaciones de una tarea cron</a></li>
+        <li><a href="#estructura-de-una-tarea-cron">Estructura de una tarea cron</a></li>
+      </ol>
+    </li>
+    <li><a href="#practicando-con-tareas-cron">Practicando con tareas cron</a>
+      <ol>
+        <li><a href="#creando-una-tarea-cron">Creando una tarea cron</a></li>
+      </ol>
+    </li>
+    <li><a href="#abuso-de-tareas-cron">Abuso de tareas cron</a>
+      <ol>
+        <li><a href="#deteccion-de-tareas-cron">Deteccion de tareas cron</a></li>
+      </ol>
+    </li>
+    <li><a href="#referencias">Referencias</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/administracion-de-tareas-cron/">
+                <img src="/p/administracion-de-tareas-cron/CronJob_hub8427227b42a57f6a1892803f74cf60b_9574_800x0_resize_q75_box.jpg"
+                        srcset="/p/administracion-de-tareas-cron/CronJob_hub8427227b42a57f6a1892803f74cf60b_9574_800x0_resize_q75_box.jpg 800w, /p/administracion-de-tareas-cron/CronJob_hub8427227b42a57f6a1892803f74cf60b_9574_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="449" 
+                        loading="lazy"
+                        alt="Featured image of post Administracion de tareas cron" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/linux/" >
+                Linux
+            </a>
+        
+            <a href="/categories/cybersecurity/" >
+                CyberSecurity
+            </a>
+        
+            <a href="/categories/bash/" >
+                Bash
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/administracion-de-tareas-cron/">Administracion de tareas cron</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 06, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <br>
+<h2 id="hola-a-todos">¡Hola a todos!
+</h2><p>En esta ocasión, vamos a abordar el fascinante tema de las tareas cron, como se indica en el título. Para comenzar, vamos a adentrarnos en el concepto de qué es una tarea cron y su importancia en la administración de sistemas</p>
+<h2 id="qué-es-una-tarea-cron">¿Qué es una tarea cron?
+</h2><p>Cron es un demonio que ejecuta comandos en horarios definidos por el administrador. Está diseñado para simplificar tareas repetitivas que, de otro modo, tendrían que ejecutarse manualmente.</p>
+<p>Cada tarea gestionada por cron es conocida como un <strong>&ldquo;cron job&rdquo;</strong>, la cual se especifica en una tabla llamada <strong>&ldquo;cron tab&rdquo;</strong>. Cada línea en la crontab representa una tarea y consta de una combinación de hora y fecha seguida del comando a ejecutar. Estas tareas pueden ejecutarse en segundo plano, permitiendo que los comandos se ejecuten automáticamente en el momento deseado por el administrador.</p>
+<h3 id="limitaciones-de-una-tarea-cron">Limitaciones de una tarea cron
+</h3><p>A pesar de sus beneficios cron tiene sus limitaciones.</p>
+<ol>
+<li><strong>Ejecucion en redes distribuidas:</strong> Cron no está diseñado para ejecutarse en una red distribuida, lo que significa que no puede coordinar tareas entre varios servidores o terminales de red. Esta limitación puede ser un inconveniente en entornos de alta disponibilidad y sistemas distribuidos.</li>
+<li><strong>Capacidades avanzadas de gestion:</strong> Aunque cron es una herramienta poderosa y sencilla, no cuenta con capacidades avanzadas para la gestión de tareas, como el manejo de dependencias entre tareas o la detección y recuperación automática de fallos. Esto puede limitar su uso en sistemas más complejos donde estas características son esenciales.</li>
+</ol>
+<h3 id="estructura-de-una-tarea-cron">Estructura de una tarea cron
+</h3><p>Las tareas cron tienen la siguiente estrucutra, estan divididas en 5 grupos y dos mas que identifican que usuario esta ejecutando la tarea y el comando o script que se esta corriendo.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th><center> minutes </center></th>
+<th><center> hours </center></th>
+<th><center> day month </center></th>
+<th><center> month </center></th>
+<th><center> day week </center></th>
+<th><center> user </center></th>
+<th><center> script/command </center></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><center> 0-59 </center></td>
+<td><center> 0-23 </center></td>
+<td><center> 1-31 </center></td>
+<td><center> 1-12 </center></td>
+<td><center> 0-6 </center></td>
+<td><center> user </center></td>
+<td><center> /path/test.sh </center></td>
+</tr>
+<tr>
+<td><center>  * </center></td>
+<td><center> * </center></td>
+<td><center> * </center></td>
+<td><center> * </center></td>
+<td><center> * </center></td>
+<td><center>  </center></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Caracteres especiales:</strong></p>
+<p>Tambien tenemos los caracteres especiales, los cuales nos ayudar a facilitar la redaccion de las tareas o crear procesos mucho mas complejos y como tal mucho mas precisos.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th><center> Caracter </center></th>
+<th><center> Definicion </center></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><center> * </center></td>
+<td>Rellena un campo sin ningun valor especifico</td>
+</tr>
+<tr>
+<td><center> / </center></td>
+<td>Especificar un intervalo de tiempo</td>
+</tr>
+<tr>
+<td><center> , </center></td>
+<td>Seleccionar multiples valores</td>
+</tr>
+<tr>
+<td><center> - </center></td>
+<td>Especificar un rango especifico</td>
+</tr>
+</tbody>
+</table></div>
+<p>Una vez sabemos todo esto, ya podremos empezar a crear nuestras propias reglas. Pero es probable que, si queremos hacer alguna muy compleja, sea necesario tener algunos conocimientos de programación. Sobre todo, para comprender la estructura de cómo se va a ejecutar alguna tarea concreta. Y en caso de que falle, sabes donde se puede estar produciendo el problema en cuestión.</p>
+<h2 id="practicando-con-tareas-cron">Practicando con tareas cron
+</h2><p><em>Es importante mencionar que las pruebas de esta práctica se realizan en sistemas operativos basados en Arch. Por lo tanto, algunos comandos pueden diferir de aquellos utilizados en otros sistemas operativos basados en Debian o sistemas basados en RHE(red hat enterprise).</em></p>
+<p>Para empezar, debemos convertirnos en usuarios root para poder administrar las tareas cron. Una vez con permisos de root, navegamos a la ruta <code>/etc/cron.d</code>, donde se encuentran las tareas. Dentro del directorio, verificaremos el estado de nuestro demonio cron con el siguiente comando: <code>systemctl status cronie</code>. En sistemas basados en Debian, se debe cambiar la palabra <em>cronie</em> por <em>cron</em>, o de igual forma pueden usar el siguiente comando <code>service cron status</code>. Una vez escrito el comando, obtendremos el siguiente resultado:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">● cronie.service - Command Scheduler
+</span></span><span class="line"><span class="cl">     Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/cronie.service<span class="p">;</span> enabled<span class="p">;</span> preset: disabled<span class="o">)</span>
+</span></span><span class="line"><span class="cl">     Active: active <span class="o">(</span>running<span class="o">)</span> since Fri 2024-06-07 16:04:45 EST<span class="p">;</span> 8s ago
+</span></span><span class="line"><span class="cl">   Main PID: <span class="m">6880</span> <span class="o">(</span>crond<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      Tasks: <span class="m">1</span> <span class="o">(</span>limit: 6988<span class="o">)</span>
+</span></span><span class="line"><span class="cl">     Memory: 888.0K <span class="o">(</span>peak: 1000.0K<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        CPU: 3ms
+</span></span><span class="line"><span class="cl">     CGroup: /system.slice/cronie.service
+</span></span><span class="line"><span class="cl">             └─6880 /usr/sbin/crond -n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jun <span class="m">07</span> 16:04:45 kinghost systemd<span class="o">[</span>1<span class="o">]</span>: Started Command Scheduler.
+</span></span><span class="line"><span class="cl">Jun <span class="m">07</span> 16:04:45 kinghost crond<span class="o">[</span>6880<span class="o">]</span>: <span class="o">(</span>CRON<span class="o">)</span> STARTUP <span class="o">(</span>1.7.2<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Jun <span class="m">07</span> 16:04:45 kinghost crond<span class="o">[</span>6880<span class="o">]</span>: <span class="o">(</span>CRON<span class="o">)</span> INFO <span class="o">(</span>Syslog will be used instead of sendmail.<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Jun <span class="m">07</span> 16:04:45 kinghost crond<span class="o">[</span>6880<span class="o">]</span>: <span class="o">(</span>CRON<span class="o">)</span> INFO <span class="o">(</span>RANDOM_DELAY will be scaled with factor 92% <span class="k">if</span> used.<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Jun <span class="m">07</span> 16:04:45 kinghost crond<span class="o">[</span>6880<span class="o">]</span>: <span class="o">(</span>CRON<span class="o">)</span> INFO <span class="o">(</span>running with inotify support<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Jun <span class="m">07</span> 16:04:45 kinghost crond<span class="o">[</span>6880<span class="o">]</span>: <span class="o">(</span>CRON<span class="o">)</span> bad <span class="nb">command</span> <span class="o">(</span>/etc/cron.d/0hourly<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Jun <span class="m">07</span> 16:04:45 kinghost crond<span class="o">[</span>6880<span class="o">]</span>: <span class="o">(</span>CRON<span class="o">)</span> INFO <span class="o">(</span>@reboot <span class="nb">jobs</span> will be run at computer<span class="err">&#39;</span>s startup.<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Aquí podemos notar que el servicio ya está activado. Si en tu sistema está desactivado, escribe el siguiente comando para activarlo: <code>systemctl start cronie</code>. En sistemas de debian tambien podemos usar esta alternativa <code>service cron start</code>. Posteriormente, vuelve a escribir el comando para verificar el estado de nuestro demonio cron y ya debería estar activo.</p>
+<h3 id="creando-una-tarea-cron">Creando una tarea cron
+</h3><p>Ahora vamos a crear una tarea cron. Para este caso, dentro de la ruta en la que estamos que es <code>/etc/cron.d</code>, crearemos un archivo que puede llevar el nombre que desees. En mi caso, lo llamaré &ldquo;<em>tarea</em>&rdquo;. Escribiremos el siguiente comando para crear el archivo: <code>touch tarea</code></p>
+<p>Luego, procedemos a abrirlo con el editor de texto de preferencia y una vez dentro, escribimos la estructura de una tarea cron, que está dividida en cinco campos como lo explique anteriormente, colocare los 5 campos con asteriscos, esto le indica a el servicio cron que quiero que se ejecute cada minuto. Esta seria la estructura de nuestro archivo:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">* * * * * root /home/gerardokydo/Desktop/file.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Y como sabemos que este archivo &ldquo;file.sh&rdquo; no existe, vamos a crearlo. Nos dirigimos a la ruta &ldquo;Desktop&rdquo; de nuestro usuario normal y creamos el archivo usando el comando <code>touch file.sh</code>. Una vez que el archivo esté creado, le daremos permisos de ejecución con el siguiente comando: <code>chmod +x file.sh</code>. Luego procedemos a editarlo con nuestro editor preferido y escribimos la tarea que deseamos que realice. A modo de ejemplo, escribimos lo siguiente:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">sleep <span class="m">10</span>
+</span></span><span class="line"><span class="cl">rm -rf /tmp/*
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>En este script, <code>sleep 10</code> hace una pausa de 10 segundos y <code>rm -rf /tmp/*</code> borra todos los archivos en el directorio <code>/tmp/</code>. Guardamos el archivo y en este punto nuestro demonio cron debería estar ejecutándose correctamente.</p>
+<h2 id="abuso-de-tareas-cron">Abuso de tareas cron
+</h2><p>Es importante destacar que, en términos de seguridad, es crucial administrar adecuadamente el acceso al sistema cron. Cualquier usuario con permisos puede modificar su propio archivo crontab, lo que podría permitir la ejecución de comandos con privilegios de usuario. Por lo tanto, se recomienda limitar el acceso a cron solo a usuarios autorizados y revisar regularmente los archivos de crontab para evitar abusos o errores.</p>
+<p>A continuación, presentamos un ejemplo de abuso de tareas cron. Este ejemplo se realiza con fines educativos en un entorno controlado y sin afectar a nadie. La intención es demostrar cómo un uso indebido de cron puede comprometer la seguridad del sistema y cómo podemos prevenirlo mediante buenas prácticas.</p>
+<h3 id="deteccion-de-tareas-cron">Deteccion de tareas cron
+</h3><p>Vamos a realizar una detección de tareas cron con el objetivo de buscar archivos en la raíz que puedan ser modificados por un usuario sin permisos de root. Esto se puede hacer de dos formas: manualmente mediante un script en bash, o utilizando una herramienta en Linux llamada <strong>pspy</strong> que está escrita en Go. Sin embargo, para entender mejor cómo detectar tareas cron, lo haremos de forma manual, lo que también nos ayudará a comprender la lógica subyacente.</p>
+<p>Para esta ocasión, vamos a utilizar el comando <code>ps</code>. Este comando, con ciertos parámetros, puede listar los comandos que se están ejecutando en tiempo real en el sistema, lo cual es muy útil para monitorear y detectar tareas cron. Además, utilizaremos el comando <code>diff</code>, que permite comparar dos archivos y mostrar sus diferencias. Esta combinación de herramientas nos ayudará a identificar cambios en los procesos y archivos del sistema. Si quieres saber mas acerca de los comandos y sus diferentes parametors les dejare al final del blog el manual page de cada uno de los comandos presentados en este post.</p>
+<p>Continuemos. Vamos a crear un archivo en nuestro escritorio con el siguiente comando: <code>touch MonitorProcess.sh</code>, le asignamos los permisos de ejecucion con el siguiente comando: <code>chmod +x MonitorProcess.sh</code></p>
+<p>Luego, lo abrimos con el editor de texto de nuestra preferencia. Una vez dentro del archivo, escribimos el siguiente código:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">old_process</span><span class="o">=</span><span class="k">$(</span>ps -eo <span class="nb">command</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> true<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">new_process</span><span class="o">=</span><span class="k">$(</span>ps -eo <span class="nb">command</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nv">diff_result</span><span class="o">=</span><span class="k">$(</span>diff &lt;<span class="o">(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$old_process</span><span class="s2">&#34;</span><span class="k">)</span> &lt;<span class="o">(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$new_process</span><span class="s2">&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$diff_result</span><span class="s2">&#34;</span> <span class="p">|</span> grep <span class="s2">&#34;[\&gt;\&lt;]&#34;</span> <span class="p">|</span> grep -v <span class="s2">&#34;kworker&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nv">old_process</span><span class="o">=</span><span class="nv">$new_process</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Una vez tengamos el codigo, vamos a repasar lo que hemos escrito:</p>
+<ol>
+<li>
+<p>Empezamos definiendo las cabeceras principales de nuestro codigo las cuales se identifican al inicio del mismo <code>#!/bin/bash.</code>
+<br></p>
+</li>
+<li>
+<p>Creamos una variable llamada &ldquo;<em>old_process</em>&rdquo; la cual va a guardar el output de nuestro comando <code>ps -eo command</code>. Si escribimos dicho comando desde nuestra terminal tendremos los procesos listados que se estan ejecutando en tiempo real.
+<br></p>
+</li>
+<li>
+<p>Creamos un bucle while infinito para ir actualizando los cambios de los procesos:</p>
+<ol>
+<li>Dentro de este mismo bucle, creamos una variable llamada &ldquo;<em>new_process</em>&rdquo; la cual va a guardar los nuevos procesos que vayan apareciendo.
+<br></li>
+<li>Haciendo uso del comando <code>diff</code>  creamos una nueva variable llamada &ldquo;<em>diff_result</em>&rdquo; que guardara el output del comando diff, a este comando le pasamos por parametros que evalue la diferencia de las variables &ldquo;<em>old_process</em>&rdquo; y &ldquo;<em>new_process</em>&rdquo;
+<br></li>
+<li>Posteriormente con el comando <code>echo</code> imprimimos el contenido de nuestra variable &ldquo;<em>diff_result</em>&rdquo; y con la ayuda del comando <code>grep</code> y el parametro <code>-v</code> filtramos los procesos que se <em>cierran(&lt;)</em> y los que se <em>abren(&gt;)</em> tambien filtramos por los procesos no deseados para que no los tome en cuenta, en mi caso todos aquellos que contiene la palabra &ldquo;<em>kworker</em>&rdquo;
+<br></li>
+<li>Y para concluir con el programa solo actualizamos nuestra variable &ldquo;_old_process&rdquo; igualadnola a nuestra variable &ldquo;<em>new_process</em>&rdquo;.</li>
+</ol>
+</li>
+</ol>
+<p>Una vez que tengamos pasando este punto procedemos a correr el codigo y si esperan un tiempo podran notar que este estara listando los procesos que se estan ejecutando en tu sistema, esto va desde configuraciones que has hecho, aplicaciones abiertas, pero lo que nos va a importar es cuando aparezca algo relacionado a las tareas cron, por ejemplo lo siguiente:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt; /usr/sbin/CROND -n
+</span></span><span class="line"><span class="cl">&lt; /bin/bash /home/gerardokydo/Desktop/file.sh
+</span></span><span class="line"><span class="cl">&lt; sleep <span class="m">10</span>
+</span></span><span class="line"><span class="cl">&gt; <span class="o">(</span>udev-worker<span class="o">)</span>
+</span></span><span class="line"><span class="cl">&gt; /bin/sh /usr/bin/tlp auto
+</span></span><span class="line"><span class="cl">&gt; /usr/bin/perl /usr/share/tlp/tlp-readconfs --outfile /run/tlp/tlp-run.conf_tmp9CBkvC
+</span></span><span class="line"><span class="cl">&lt; /usr/bin/perl /usr/share/tlp/tlp-readconfs --outfile /run/tlp/tlp-run.conf_tmp9CBkvC
+</span></span><span class="line"><span class="cl">&gt; /bin/sh /usr/bin/tlp auto
+</span></span><span class="line"><span class="cl">&gt; cat /sys/class/power_supply/AC/online
+</span></span><span class="line"><span class="cl">&lt; /bin/sh /usr/bin/tlp auto
+</span></span><span class="line"><span class="cl">&lt; cat /sys/class/power_supply/AC/online
+</span></span><span class="line"><span class="cl">&lt; /bin/sh /usr/bin/tlp auto
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>En mi caso, estos fueron los procesos que se listaron. El más relevante es el que se encuentra en las primeras líneas, donde podemos observar que se está ejecutando el demonio <code>/usr/sbin/CROND -n</code> y, a su vez, este ejecuta nuestro archivo &ldquo;<em>file.sh</em>&rdquo; almacenado en nuestro escritorio. Recordarán que este archivo hace un <code>sleep 10</code> y posteriormente borra todo lo que está en la carpeta &ldquo;<em>/tmp/</em>&rdquo;.</p>
+<p>Ahora, suponiendo que soy un atacante y noto este registro de procesos, investigaría más acerca de este fichero. Por lo tanto, escribiría el siguiente comando: <code>ls -l /home/gerardokydo/Desktop/file.sh</code>, lo que me dara el siguiente resultado:</p>
+<p><code>-rwxr-xrwx 1 gerardokydo gerardokydo 36 Jun 7 /home/gerardokydo/Desktop/file.sh</code></p>
+<p>Podemos observar que el propietario de este archivo ha habilitado la edición del archivo para el grupo &ldquo;otros&rdquo;. Esto significa que cualquier usuario en el sistema, independientemente de sus permisos, puede modificar este archivo. Como un usuario no privilegiado, puedo explotar esta configuración incorrecta de permisos para obtener privilegios elevados.</p>
+<p>Primero, nos dirigimos a la ruta donde se encuentra el archivo. Dado que el archivo está siendo ejecutado por el usuario root, podemos cambiar su contenido para ejecutar comandos con privilegios de root. Esto es una vulnerabilidad seria que permite a un usuario no autorizado ejecutar acciones que normalmente estarían restringidas.</p>
+<p>Para modificar el contenido del archivo, utilizamos el siguiente comando:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">4775</span> /bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Este script le asigna privilegios <strong>SUID</strong> a nuestra shell. El bit <strong>SUID</strong> permite que un archivo ejecutable se ejecute con los permisos del propietario del archivo, en este caso, root. Guardamos los cambios y salimos del archivo</p>
+<p>Si ahora escribimos <code>ls -l /bin/bash</code>, vamos a notar los privilegios, que se verían de la siguiente manera:</p>
+<p><code>rwxr-xr-x root root 1.1 MB Tue Jan 23 16:22:43 2024 /bin/bash</code></p>
+<p>Para monitorear los cambios en los permisos, utilizaremos el comando <code>watch -n 1 ls -l /bin/bash</code>, que actualizará la visualización cada segundo para mostrar el cambio en los permisos realizado por el script. Notaremos una letra &rsquo;s&rsquo; en los permisos:</p>
+<p><code>-rwsrwxr-x 1 root root 1112784 Jan 23 16:22 /bin/bash</code></p>
+<p>Esto sucede porque ahora <strong>SUID</strong> está activado. Esto nos permite ejecutar el binario con los permisos del propietario del archivo, en este caso, root.</p>
+<p>Para lanzar una shell con los privilegios del propietario (root), escribimos <code>bash -p</code>. Al presionar Enter, veremos que ahora somos usuario root. Podemos confirmarlo con el comando <code>whoami</code>.</p>
+<p>Con esto, hemos demostrado la importancia de una correcta configuración de las tareas cron. Si un atacante detecta archivos que se están ejecutando con permisos inadecuados, puede explotarlos para obtener privilegios elevados. Es crucial asegurar que los permisos estén correctamente configurados para prevenir intrusiones por parte de usuarios no autorizados.</p>
+<br>
+<h2 id="referencias">Referencias
+</h2><ul>
+<li>
+<p><a class="link" href="https://www.man7.org/linux/man-pages/man1/systemctl.1.html"  target="_blank" rel="noopener"
+    >systemctl(1) — Linux manual page</a></p>
+</li>
+<li>
+<p><a class="link" href="https://www.man7.org/linux/man-pages/man1/ps.1.html"  target="_blank" rel="noopener"
+    >ps(1) — Linux manual page</a>.</p>
+</li>
+<li>
+<p><a class="link" href="https://www.man7.org/linux/man-pages/man1/diff.1.html"  target="_blank" rel="noopener"
+    >diff(1) — Linux manual page</a></p>
+</li>
+<li>
+<p><a class="link" href="https://www.man7.org/linux/man-pages/man1/grep.1.html"  target="_blank" rel="noopener"
+    >grep()1 — Linux manual page</a></p>
+</li>
+<li>
+<p><a class="link" href="https://www.man7.org/linux/man-pages/man1/watch.1.html"  target="_blank" rel="noopener"
+    >watch(1) — Linux manual page</a></p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/process-analysis/">Process Analysis</a>
+        
+            <a href="/tags/programming/">Programming</a>
+        
+            <a href="/tags/algorithms/">Algorithms</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/comandos-basicos-en-linux-parte-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/comandos-basicos-en-linux-parte-1/wallpaper.315eded0ac562abf05fbe642eb95d302_hua39c6827143249c74e927fd9c967d9eb_10021_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Comandos Basicos en Linux - Parte 1"
+                        
+                        data-hash="md5-MV7e0KxWKr8F&#43;&#43;ZC65XTAg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Comandos Basicos en Linux - Parte 1</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Gerardo H. Gomez
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

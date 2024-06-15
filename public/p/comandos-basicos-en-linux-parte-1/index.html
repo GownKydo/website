@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Introduccion para comenzar a usar sistemas GNU/Linux como todo un chad">
+<title>Comandos Basicos en Linux - Parte 1</title>
+
+<link rel='canonical' href='http://localhost:1313/p/comandos-basicos-en-linux-parte-1/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Comandos Basicos en Linux - Parte 1">
+<meta property='og:description' content="Introduccion para comenzar a usar sistemas GNU/Linux como todo un chad">
+<meta property='og:url' content='http://localhost:1313/p/comandos-basicos-en-linux-parte-1/'>
+<meta property='og:site_name' content='Gerardo H. Gomez'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-01-10T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/comandos-basicos-en-linux-parte-1/wallpaper.jpg' />
+<meta name="twitter:site" content="@corniergown">
+    <meta name="twitter:creator" content="@corniergown"><meta name="twitter:title" content="Comandos Basicos en Linux - Parte 1">
+<meta name="twitter:description" content="Introduccion para comenzar a usar sistemas GNU/Linux como todo un chad"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/comandos-basicos-en-linux-parte-1/wallpaper.jpg' />
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/PictureBlog_hu4df1048b6411433b7a83ab29f4569ade_384176_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Gerardo H. Gomez</a></h1>
+            <h2 class="site-description">Apasionado por la tecnologia y la programación.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/corniergown'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/corniergown'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/comandos-basicos-en-linux-parte-1/">
+                <img src="/p/comandos-basicos-en-linux-parte-1/wallpaper_hua39c6827143249c74e927fd9c967d9eb_10021_800x0_resize_q75_box.jpg"
+                        srcset="/p/comandos-basicos-en-linux-parte-1/wallpaper_hua39c6827143249c74e927fd9c967d9eb_10021_800x0_resize_q75_box.jpg 800w, /p/comandos-basicos-en-linux-parte-1/wallpaper_hua39c6827143249c74e927fd9c967d9eb_10021_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="451" 
+                        loading="lazy"
+                        alt="Featured image of post Comandos Basicos en Linux - Parte 1" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/linux/" >
+                Linux
+            </a>
+        
+            <a href="/categories/bash/" >
+                Bash
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/comandos-basicos-en-linux-parte-1/">Comandos Basicos en Linux - Parte 1</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Introduccion para comenzar a usar sistemas GNU/Linux como todo un chad
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 10, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>En esta ocasión, como se menciona en el título, vamos a adentrarnos en el mundo de Linux. Este post está dirigido a aquellos que son nuevos en este sistema operativo, con el fin de ayudarles y guiarlos en el uso de la terminal sin temor a romper algo con algún comando.</p>
+<p>Este post será muy práctico, y para ello me guiaré de una página que considero increíble para aprender sobre los comandos en Linux. Para dar un breve resumen, esta página consiste en un juego de desafios en seguridad informatica. Tendrás que usar comandos en Linux para encontrar un archivo .txt donde se encuentra una contraseña para un usuario. A medida que subes de nivel, la dificultad aumenta. Para avanzar, deberás encontrar una &ldquo;flag&rdquo; para cada usuario, lo que representa los diferentes niveles y la flag la contraseña de acceso a los mismos.</p>
+<p>Espero que este post te sea de gran ayuda y te anime a explorar más sobre el fascinante mundo de Linux. ¡Empecemos!</p>
+<p>Nos diriguimos a la siguiente pagina <a class="link" href="https://overthewire.org/wargames/bandit/"  target="_blank" rel="noopener"
+    >over the wire</a>, nos llevara a esta pagina:</p>
+<p><img src="/p/comandos-basicos-en-linux-parte-1/img/level0/Bandit0Menu.png"
+	width="1366"
+	height="641"
+	srcset="/p/comandos-basicos-en-linux-parte-1/img/level0/Bandit0Menu_hu79d89aa75984c543f95d29380dd9042a_264909_480x0_resize_box_3.png 480w, /p/comandos-basicos-en-linux-parte-1/img/level0/Bandit0Menu_hu79d89aa75984c543f95d29380dd9042a_264909_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Menu"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="213"
+		data-flex-basis="511px"
+	
+></p>
+<h1 id="level-0---level-1">Level 0 -&gt; Level 1
+</h1><p>Aquí puedes leer más sobre lo que trata Bandit y en qué consiste. Nos dirigiremos al nivel 0, donde podemos ver las instrucciones para acceder como bandit0 y conectarnos al servidor mediante el comando SSH. Una vez que hemos leído las instrucciones, pasamos al siguiente nivel. En el siguiente nivel, podemos observar que nos dan las siguientes instrucciones.</p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/bandit0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="bandit0"
+	
+	
+></p>
+<p>Aquí ya podemos observar que las instrucciones nos indican que la contraseña para el siguiente nivel se encuentra en un archivo llamado &ldquo;<em>readme</em>&rdquo;, localizado en el directorio home de nuestro usuario &ldquo;<em>bandit0</em>&rdquo;. Vamos a confirmarlo. Como aún no me he conectado al juego, vamos a hacerlo.</p>
+<p>En el nivel 0 se especifica que se debe usar <code>ssh</code> para acceder al servidor. Nos proporcionan un nombre de host, un puerto y la contraseña. La estructura del comando para acceder al nivel cero es la siguiente: <code>ssh bandit0@bandit.labs.overthewire.org -p 2220</code>. Si es nuestra primera vez usando el comando ssh, nos preguntará si estamos seguros de acceder al servidor. Entonces, escribimos &lsquo;Y/y&rsquo; o simplemente &ldquo;yes&rdquo;. A continuación, nos pedirá la contraseña del usuario bandit0, la cual es <strong>bandit0</strong>.</p>
+<p>Una vez dentro del servidor, comprobamos que somos el usuario bandit0 con el comando <code>whoami</code>. Este comando nos sirve para saber qué usuario está usando el sistema actualmente y, si todo está bien, podemos observar claramente que se trata del usuario &ldquo;bandit0&rdquo;. Posteriormente, escribimos el comando <code>ls</code> para listar el contenido de nuestro directorio home y ahí es donde se encuentra el archivo &ldquo;<em>readme</em>&rdquo; que contiene la contraseña para acceder a &ldquo;bandit1&rdquo;. Escribimos el comando <code>cat readme</code> para leer el contenido de este archivo y, como se puede observar, esa es la contraseña para el siguiente nivel, la copiamos en nuestro portapapeles y del servidor con el comando <code>exit</code></p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level0/level0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="level0"
+	
+	
+></p>
+<h1 id="level-1---level-2">Level 1 -&gt; Level 2
+</h1><p>Para el siguiente nivel, vamos a acceder como bandit1. Vamos a usar el mismo comando que usamos anteriormente con bandit0, pero cambiando el usuario. El comando es el siguiente: <code>ssh bandit1@bandit.labs.overthewire.org -p 2220</code>. La única diferencia será el número del usuario, todo lo demás se mantiene igual. Accedemos y, una vez que nos pida la contraseña y pegamos la que habíamos guardado anteriormente en nuestro portapapeles.</p>
+<p>Las instrucciones para el siguiente nivel son las siguientes.</p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level1/instructions_level1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="instructions_level1"
+	
+	
+></p>
+<p>Nos especifica que la contraseña está guardada en un archivo localizado en el directorio home con el nombre &lsquo;-&rsquo;.</p>
+<p>El desafío parece simple, pero el problema surge cuando escribimos el comando <code>cat -</code>. Este se queda en espera, ya que lo toma como si fuera un parámetro de <code>cat</code>. Entonces, ¿cómo solucionamos esto? Para poder resolver este desafío, podemos hacerlo de varias formas:</p>
+<ol>
+<li>
+<p><strong>Desde la ruta absoluta:</strong> <code>cat /home/bandit1/-</code>. De esta forma, indicamos la ruta completa del archivo, evitando que <code>cat</code> lo confunda con un parámetro.</p>
+</li>
+<li>
+<p><strong>Forma alternativa:</strong> <code>cat $(pwd)/-</code>. Usando este método, nos ahorramos escribir toda la ruta. El comando <code>pwd</code> nos da la ruta actual, y usamos esa salida para que <code>cat</code> interprete correctamente la ubicación del archivo. Esto se especifica usando los símbolos <code>$()</code>.</p>
+</li>
+<li>
+<p><strong>Indicando la ruta actual:</strong> <code>cat ./-</code>. De esta forma, indicamos que desde la ruta actual en la que nos encontramos (representada por un punto), y se lee el archivo con el nombre &ldquo;-&rdquo;.</p>
+</li>
+</ol>
+<p>Observamos que, de cualquiera de estas maneras, obtenemos la contraseña.</p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level1/level1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="level1"
+	
+	
+></p>
+<p>Aqui conluimos con este nivel, nos salimos y accedemos al siguiente.</p>
+<h1 id="level-2---level-3">Level 2 -&gt; level 3
+</h1><p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level2/instructions.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="instructions"
+	
+	
+></p>
+<p>Para este nivel, observamos que hay un archivo llamado &ldquo;<em>spaces in this filename</em>&rdquo;. Para poder leer este tipo de archivos con espacios, necesitamos escapar cada espacio con el carácter especial barra inversa <code>\</code>, quedando así el comando: <code>cat spaces\ in\ this\ filename</code>. De igual forma, podemos ahorrarnos esto usando la tecla tab, la cual nos autocompleta lo mencionado anteriormente.</p>
+<p>Otra forma de hacer este proceso es usando comillas dobles, quedando de esta manera: <code>cat &quot;spaces in this filename&quot;</code>. De esta forma, le indicamos el nombre del archivo.</p>
+<p>Pero además de hacer eso, también podemos ahorrarnos escribir el nombre. Para hacer esto más rápido, hacemos uso del carácter especial asterisco <code>*</code>, el cual interpreta cualquier cosa, quedando así el comando: <code>cat *filename</code>. De esta forma, le indicamos que queremos leer todos los archivos que terminen en &ldquo;filename&rdquo;. Igualmente, se puede modificar el orden del asterisco, por ejemplo: <code>cat spaces*</code>, aquí se indica que queremos leer todos los archivos que comiencen con el nombre &ldquo;spaces&rdquo;. Cabe aclarar que este comando es mejor usarlo cuando sabemos que solo existe un archivo con ese nombre; en caso contrario, listará el contenido de todos los archivos que encuentre.</p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level2/level2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="level2"
+	
+	
+></p>
+<p>Ahora que tenemos la contraseña nos dirigimos al siguiente nivel.</p>
+<h1 id="level-3---level-4">Level 3 -&gt; Level 4
+</h1><p>Para este nivel la contraseña esta guardada en un archivo oculto dentro del directorio &ldquo;inhere&rdquo;</p>
+<p>Este nivel es muy simple, si listamos el contenido de la carpeta con el comando <code>ls</code>, sabremos que a simple vista nos e ve nada, para ello vamos a hacer uso de los parametros de dicho comando, usaremos el parametro <code>-a</code> para listar todo lo que se encuentre a dentro quedando asi el comando: <code>ls -a inhere</code>. Y ahora podemos observar que hay un archivo con el nombre &ldquo;&hellip;Hiding-From-You&rdquo;, con el comando cat revisamos el contenido y tendremos la contraseña.</p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level3/download.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="download.png"
+	
+	
+></p>
+<h1 id="level-4---level-5">Level 4 -&gt; level 5
+</h1><p>Para este nivel, se nos indica que la contraseña está guardada en un archivo humanamente legible, dentro del directorio &ldquo;inhere&rdquo;.</p>
+<p>Si listamos el contenido del directorio, podemos notar que hay múltiples archivos con distintos nombres. Dado que no todos tienen contenido legible y para evitar abrir e inspeccionar uno por uno, vamos a identificar el archivo correcto con los comandos <code>file</code> y <code>find</code>.</p>
+<p>El comando <code>file</code> nos permite saber la clasificación de cada archivo: si es una imagen, un archivo de texto, un binario, un video, etc. El comando <code>find</code> es una alternativa al comando <code>ls</code>, con la diferencia de que <code>find</code> busca desde la raíz de la ruta que se le pase. Por ejemplo, si escribimos el comando <code>find inhere</code>, este nos listará el contenido en forma de lista usando un formato de árbol binario.</p>
+<p>Lo que vamos a hacer a continuación es combinar los comandos <code>find</code> y <code>file</code>. ¿Y cómo hacemos eso? Fácil, con el comando <code>xargs</code> y el uso del carácter &ldquo;pipe&rdquo; <code>|</code>.</p>
+<p>El comando <code>xargs</code> lee los argumentos desde la entrada estándar. Por ejemplo, si nosotros escribimos el siguiente comando:</p>
+<p><code>echo &quot;file1.txt file2.txt file3.txt&quot; | xargs touch</code></p>
+<p>Esto creará los archivos <code>file1.txt</code>, <code>file2.txt</code>, y <code>file3.txt</code></p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level4/ejemplo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ejemplo.png"
+	
+	
+></p>
+<p>Lo que estamos haciendo es lo siguiente: dada la salida del comando <code>echo</code>, queremos crear archivos con el nombre de dicha salida. Entonces, se ejecuta <code>xargs touch</code> y el resultado es que se crean tres archivos con los nombres <code>file1.txt</code>, <code>file2.txt</code>, etc.</p>
+<p>Usando el carácter &ldquo;or/pipe&rdquo; <code>|</code>, que es un carácter especial, se puede hacer que la salida de un comando sea la entrada de otro comando.</p>
+<p>Bien, una vez explicado esto, utilizamos lo que sabemos con el comando <code>find</code>. Vamos a ejecutar la siguiente instrucción: <code>find . | xargs file</code>. Usamos el punto <code>.</code> en el comando <code>find</code> para especificar que queremos que busque archivos desde la ruta en la que estamos.</p>
+<p>Si seguimos los pasos hasta aquí, ya tendremos listados todos los archivos y notamos que hay uno que es de tipo ASCII. Es el único dentro del directorio <code>inhere</code>. Por lo tanto, abrimos ese archivo con el comando <code>cat</code> y observamos que contiene la contraseña para el siguiente nivel.</p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level4/level4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="level4"
+	
+	
+></p>
+<h1 id="level-5---6">Level 5 -&gt; 6
+</h1><p>Para este nivel, las instrucciones mencionan que el archivo que guarda la contraseña está en algún lugar dentro del directorio &ldquo;inhere&rdquo; y tiene las siguientes propiedades:</p>
+<ul>
+<li>
+<p>Es humanamente legible.</p>
+</li>
+<li>
+<p>Tiene un tamaño de 1033 bytes.</p>
+</li>
+<li>
+<p>No es un archivo ejecutable.</p>
+</li>
+</ul>
+<p>Vamos a usar el comando <code>find</code>, ya que este comando tiene parámetros que nos pueden ayudar a encontrar el archivo siguiendo estas propiedades.</p>
+<p>El comando que vamos a utilizar es el siguiente:</p>
+<p><code>find inhere/ -readable -size 1033c ! -executable</code>.</p>
+<p>El parámetro <code>-readable</code> busca un archivo que sea legible. Con el parámetro <code>-size</code> especificamos que sea de un determinado tamaño; puede ser en megas, gigas, etc., pero en esta ocasión es en bytes, por lo tanto, se usa la letra &lsquo;c&rsquo;. El carácter <code>!</code> es para negar una condición, así que especificamos que no queremos que sea ejecutable. Si quitamos el signo de exclamación, le estamos indicando que queremos que sea ejecutable.</p>
+<p>Al ejecutar el comando, podemos ver que nos da un output de un archivo en la carpeta &ldquo;maybehere07&rdquo;, dentro del archivo &ldquo;.file2&rdquo;. Entonces, tenemos varias formas de leer este archivo.</p>
+<p>Usando <code>cat</code> como lo haría un chad promedio, el comando es el siguiente:</p>
+<p><code>cat $(find inhere/ -readable -size 1033c ! -executable)</code></p>
+<p>Usando <code>cat</code> de manera normal, el siguiente comando seria este:</p>
+<p><code>cat inhere/maybehere07/.file2</code></p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level5/metodos.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="metodos.png"
+	
+	
+></p>
+<p>Ambas maneras nos daran la contraseña, de igual manera puedes seguir buscando para tener un formato mas limpio con el comando xargs, como se ve a continuacion.</p>
+<p><img src="/content/post/BasicCommandsOnLinuxPart1/img/level5/ejemplo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ejemplo"
+	
+	
+></p>
+<p>Una vez obtuvimos la contraseña nos vamos para el siguiente nivel.</p>
+<p>HWasnPhtq9AVKe0dmk45nxy20cvUa6EG</p>
+<h1 id="level-6---7">Level 6 -&gt; 7
+</h1><p>En construccion . . .</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/administracion-de-tareas-cron/">
+        
+        
+            <div class="article-image">
+                <img src="/p/administracion-de-tareas-cron/CronJob.600d83cec36f8c6859adbd5eda649223_hub8427227b42a57f6a1892803f74cf60b_9574_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Administracion de tareas cron"
+                        
+                        data-hash="md5-YA2DzsNvjGhZrb1e2mSSIw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Administracion de tareas cron</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Gerardo H. Gomez
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
