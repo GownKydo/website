@@ -1,5 +1,3 @@
-  
-
 +++
 title = 'Comandos Basicos en Linux - Parte 1'
 description = "Introduccion para comenzar a usar sistemas GNU/Linux como todo un chad"
@@ -149,8 +147,70 @@ Ambas maneras nos daran la contraseña, pero de igual forma puedes seguir buscan
 
 Una vez obtuvimos la contraseña nos vamos para el siguiente nivel.  
 
-HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
-
 # Level 6 -> 7
 
-En construccion . . .
+Las instrucciones de este nivel son bastante similares a las del nivel anterior. Nos indican que la contraseña está guardada en algún lugar dentro del servidor. Por lo tanto, el archivo donde se encuentra la flag para el siguiente nivel tiene las siguientes propiedades:
+
+* El propietario es bandit7.
+* Pertenece al grupo bandit6.
+* Tiene un tamaño de 33 bytes.
+
+Una vez entendemos esto, vamos a usar el comando find con los siguientes parámetros:
+
+* `-group`: para especificar el grupo al que pertenece el archivo.
+* `-user`: seguido del nombre del propietario del archivo.
+* `-size`: para especificar el tamaño del archivo, añadiendo una 'c' al final para indicar que estamos buscando en bytes.
+
+El comando nos quedaría de la siguiente forma:
+
+`find / -user bandit7 -group bandit6 -size 33c`
+
+Una vez que presionamos Enter, observaremos que la pantalla se llenará de archivos que no podemos abrir, mostrando el mensaje "_Access denied_". Para filtrar estos accesos denegados, vamos a modificar nuestro comando agregando una instrucción al final: `2>/dev/null`.
+
+Esta instrucción redirige los mensajes de error al `/dev/null`, veanlo como un agujero negro, se va al vacio, evitando que se muestren en la pantalla.
+
+[ejemplo-1](/img/level6/level6.png)
+
+
+El comando completo es el siguiente:
+
+`find / -user bandit7 -group bandit6 -size 33c 2>/dev/null`
+
+dandonos como resultado el archivo que buscabamos, simplemente le hacemos un `cat` a la ruta o pueden hacerlo con `xargs cat`. Y nos vamos para el siguiente nivel.
+
+[ejemplo-1.1](/img/level6/password.png)
+
+# Level 7 -> 8
+
+Este nivel es muy simple, para esta parte ya pasamoa a la busqueda dentro de archivos, por lo que el nivel nos lo da entender, en las instrucciones se especifica que la contraseña esta almacenada dentro de un archivo llamado "_data.txt_" la contraseña es la siguiente a la palabra "_millionth_", entonces para completar este nivel vamos a usar el comando `grep`.
+
+* `grep`: el comando grep es muy utili cuando queremos filtar informacion dentro de un archivo.
+
+Para darle mas formato a nuestros ouputs tambien vamos a incluir el comando `xargs`, este comando igualemnte nos permite filtrar informacion, pero podemos jugar con sus parametros para que nos filtre informacion especifica de un output.
+
+Entonces una vez dentro de bandit7, vamos a escribir el siguiente comando:
+
+`grep "millionth" data.txt`
+
+[ejemplo-1](/img/bandit7/ejemplo.png)
+
+Y como podemos ver, tenemos la contraseña. Tambien podemos especificar la linea en la que se encuentra con el ṕarametro `-n`, pero para esta ocacion vamos a usar `awk` para unicamente filtrar por la contraseña, quedando asi el comando:
+
+`grep "millionth" data.txt | awk '{print$2}'`
+
+(ejemplo-1.1)[/img/bandit7/argumento.png]
+
+Y De igual forma nos da la contraseña. El numero 2, se usa para especificar un argumento, en este caso el output del comando grep tiene dos textos, por lo tanto le estamos filtrando por el segundo texto, el cual es tomando como un argumento o inlcuso podemos modificar el comando de `awk` para imprimir uncamente el ultimo argumento, el comando es el siguiente:
+
+`grep "millionth" data.txt | awk 'NF{print$NF}'`
+
+[ejemplo-1.2](/img/bandit7/awk.png)
+
+Y nos da el mismo resultado que el anterior, la unica diferencia es la instruccion que le estamos pasando, en este ultimo comando queremos que nos imprima el ultimo argumento de la oracion y con el anterior comando unicamente el segundo argumento. Si existieran mas palabras despues de la contraseña seria mas optimo usar el anterior comando especificando donde se encutra el texto por el cual queremos filtar.
+
+Nos pasamos al siguiente nivel.
+
+dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+
+# Level 8 -> 9
+
