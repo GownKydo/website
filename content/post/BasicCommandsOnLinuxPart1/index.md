@@ -214,3 +214,23 @@ dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
 # Level 8 -> 9
 
+Para este nivel nos indica que la contraseña esta guardada en el archivo "_data.txt_" y nos indica que es la unica linea que no se repite, si nosotros verificamos el contenido que hay dentro vamos a observar que nada tiene sentido no podemos saber cual es la contraseña, entonces lo que vamos a hacer es usar el comando `uniq` combinado con el comando `sort`.
+
+![ejemplo-1](/img/level8/text.png)
+
+El comando `sort`: nos va a permitir ordenar las lineas, lo toma en cuenta en cuestion de la primera letra, si es un numero con el numero 0, si es letra con la letra 'a'
+
+![ejemplo-1.1](/img/level8/sort.png)
+
+El comando `uniq`: nos ayudara a saber cual es la unica letra que no se repite en el texto.
+
+Este es el comando que vamos a utilizar:
+
+`sort data.txt | uniq -u`
+
+dando la contraseña en cuestion y nos pasamos al siguiente nivel.
+
+!(ejemplo-2)[/img/level8/pass.png]
+
+# Level 9 -> 10
+
