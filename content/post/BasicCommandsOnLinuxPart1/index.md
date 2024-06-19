@@ -169,7 +169,7 @@ Una vez que presionamos Enter, observaremos que la pantalla se llenará de archi
 
 Esta instrucción redirige los mensajes de error al `/dev/null`, veanlo como un agujero negro, se va al vacio, evitando que se muestren en la pantalla.
 
-[ejemplo-1](/img/level6/level6.png)
+![ejemplo-1](/img/level6/level6.png)
 
 
 El comando completo es el siguiente:
@@ -178,7 +178,7 @@ El comando completo es el siguiente:
 
 dandonos como resultado el archivo que buscabamos, simplemente le hacemos un `cat` a la ruta o pueden hacerlo con `xargs cat`. Y nos vamos para el siguiente nivel.
 
-[ejemplo-1.1](/img/level6/password.png)
+![ejemplo-1.1](/img/level6/password.png)
 
 # Level 7 -> 8
 
@@ -192,19 +192,19 @@ Entonces una vez dentro de bandit7, vamos a escribir el siguiente comando:
 
 `grep "millionth" data.txt`
 
-[ejemplo-1](/img/bandit7/ejemplo.png)
+![ejemplo-1](/img/bandit7/ejemplo.png)
 
 Y como podemos ver, tenemos la contraseña. Tambien podemos especificar la linea en la que se encuentra con el ṕarametro `-n`, pero para esta ocacion vamos a usar `awk` para unicamente filtrar por la contraseña, quedando asi el comando:
 
 `grep "millionth" data.txt | awk '{print$2}'`
 
-(ejemplo-1.1)[/img/bandit7/argumento.png]
+![ejemplo-1.1](/img/bandit7/argumento.png)
 
 Y De igual forma nos da la contraseña. El numero 2, se usa para especificar un argumento, en este caso el output del comando grep tiene dos textos, por lo tanto le estamos filtrando por el segundo texto, el cual es tomando como un argumento o inlcuso podemos modificar el comando de `awk` para imprimir uncamente el ultimo argumento, el comando es el siguiente:
 
 `grep "millionth" data.txt | awk 'NF{print$NF}'`
 
-[ejemplo-1.2](/img/bandit7/awk.png)
+![ejemplo-1.2](/img/bandit7/awk.png)
 
 Y nos da el mismo resultado que el anterior, la unica diferencia es la instruccion que le estamos pasando, en este ultimo comando queremos que nos imprima el ultimo argumento de la oracion y con el anterior comando unicamente el segundo argumento. Si existieran mas palabras despues de la contraseña seria mas optimo usar el anterior comando especificando donde se encutra el texto por el cual queremos filtar.
 
