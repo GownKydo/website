@@ -230,7 +230,7 @@ Este es el comando que vamos a utilizar:
 
 dando la contraseña en cuestion y nos pasamos al siguiente nivel.
 
-!(ejemplo-2)[/img/level8/pass.png]
+![ejemplo-2](/img/level8/pass.png)
 
 # Level 9 -> 10
 
