@@ -21,7 +21,7 @@ Nos diriguimos a la siguiente pagina [over the wire](https://overthewire.org/war
 
 ![Menu](/img/level0/bandit0Menu.png)
 
-# Level 0 -> Level 1
+## Level 0 -> Level 1
 
 Aquí puedes leer más sobre lo que trata Bandit y en qué consiste. Nos dirigiremos al nivel 0, donde podemos ver las instrucciones para acceder como bandit0 y conectarnos al servidor mediante el comando SSH. Una vez que hemos leído las instrucciones, pasamos al siguiente nivel. En el siguiente nivel, podemos observar que nos dan las siguientes instrucciones.
 
@@ -35,7 +35,7 @@ Una vez dentro del servidor, comprobamos que somos el usuario bandit0 con el com
 
 ![level-0](/img/level0/level0.png)
 
-# Level 1 -> Level 2
+## Level 1 -> Level 2
 
 Para el siguiente nivel, vamos a acceder como bandit1. Vamos a usar el mismo comando que usamos anteriormente con bandit0, pero cambiando el usuario. El comando es el siguiente: `ssh bandit1@bandit.labs.overthewire.org -p 2220`. La única diferencia será el número del usuario, todo lo demás se mantiene igual. Accedemos y una vez que nos pida la contraseña pegamos la que habíamos guardado anteriormente en nuestro portapapeles.
 
@@ -59,7 +59,7 @@ Y podemos observamos que de cualquiera de estas maneras obtenemos la contraseña
 
 Aqui conluimos con este nivel, nos salimos y accedemos al siguiente.
 
-# Level 2 -> level 3
+## Level 2 -> level 3
 
 ![instructions](/img/level2/instructions.png)
 
@@ -75,7 +75,7 @@ Cabe aclarar que este comando es mejor usarlo cuando sabemos que solo existe un 
 
 Ahora que tenemos la contraseña nos dirigimos al siguiente nivel.
 
-# Level 3 -> Level 4
+## Level 3 -> Level 4
 
 Para este nivel la contraseña esta guardada en un archivo oculto dentro del directorio "inhere"
 
@@ -83,7 +83,7 @@ Este nivel es muy simple, si listamos el contenido de la carpeta con el comando 
 
 ![Level-3](/img/level3/download.png)
 
-# Level 4 -> level 5
+## Level 4 -> level 5
 
 Para este nivel, se nos indica que la contraseña está guardada en un archivo humanamente legible, dentro del directorio "inhere".
 
@@ -111,7 +111,7 @@ Si seguimos los pasos hasta aquí, ya tendremos listados todos los archivos y no
 
 ![level-4](img/level4/level4.png)
 
-# Level 5 -> 6
+## Level 5 -> 6
 
 Para este nivel, las instrucciones mencionan que el archivo que guarda la contraseña está en algún lugar dentro del directorio "inhere" y tiene las siguientes propiedades:
 
@@ -147,7 +147,7 @@ Ambas maneras nos daran la contraseña, pero de igual forma puedes seguir buscan
 
 Una vez obtuvimos la contraseña nos vamos para el siguiente nivel.  
 
-# Level 6 -> 7
+## Level 6 -> 7
 
 Las instrucciones de este nivel son bastante similares a las del nivel anterior. Nos indican que la contraseña está guardada en algún lugar dentro del servidor. Por lo tanto, el archivo donde se encuentra la flag para el siguiente nivel tiene las siguientes propiedades:
 
@@ -180,7 +180,7 @@ dandonos como resultado el archivo que buscabamos, simplemente le hacemos un `ca
 
 ![ejemplo-1.1](/img/level6/password.png)
 
-# Level 7 -> 8
+## Level 7 -> 8
 
 Este nivel es muy simple, para esta parte ya pasamoa a la busqueda dentro de archivos, por lo que el nivel nos lo da entender, en las instrucciones se especifica que la contraseña esta almacenada dentro de un archivo llamado "_data.txt_" la contraseña es la siguiente a la palabra "_millionth_", entonces para completar este nivel vamos a usar el comando `grep`.
 
@@ -210,9 +210,7 @@ Y nos da el mismo resultado que el anterior, la unica diferencia es la instrucci
 
 Nos pasamos al siguiente nivel.
 
-dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
-
-# Level 8 -> 9
+## Level 8 -> 9
 
 Para este nivel nos indica que la contraseña esta guardada en el archivo "_data.txt_" y nos indica que es la unica linea que no se repite, si nosotros verificamos el contenido que hay dentro vamos a observar que nada tiene sentido no podemos saber cual es la contraseña, entonces lo que vamos a hacer es usar el comando `uniq` combinado con el comando `sort`.
 
@@ -232,7 +230,7 @@ dando la contraseña en cuestion y nos pasamos al siguiente nivel.
 
 ![ejemplo-2](/img/level8/pass.png)
 
-# Level 9 -> 10
+## Level 9 -> 10
 
 Para este nivel nos indica que la contraseña se encuentra almacenada en un archivo "_data.txt_" y la contraseña se encuentra ubicada seguida de las unicas palabras que son humanamente legibles.
 
@@ -240,11 +238,11 @@ Lo que nos dice esto es que si leemos el contenido del archivo lo que vamos a en
 
 Contenido del archivo:
 
-![file-data](/img/level8/data.png)
+![file-data](/img/level9/data.png)
 
 `strings`: Este comando nos listara todas las partes del archivo que son texto.
 
-![strings_command](/img/level8/strings.png)
+![strings_command](/img/level9/strings.png)
 
 Podemos ver que nos ha filtrado las cadenas que son de texto, y aunque en su mayoría no se entiende, podemos ver una que dice “the”, y como el nivel nos decia, que la contraseña estaba en un valor con signos de igual, así que filtraremos con grep las lineas que tengan simbolos de igual:
 
@@ -264,7 +262,7 @@ Y esto nos dara la contraseña.
 flag _(checkpoint)_: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 
 
-# Level 10 -> level 11
+## Level 10 -> level 11
 
 Ahora este nivel es bastante facil ya que unicamente nos indica que hay que decodificar un archivo que contiene texto en base64, por lo tanto unicamente vamos a utilizar el comando `base64 -d`, el parametro -d quiere decir "decode"
 
@@ -277,17 +275,18 @@ Y como podemos ver tenemos la contraseña, nos dirigimos al siguiente nivel.
 
 ![password](/img/level10/pass.png)
 
-# Level 11 -> level 12
+
+## Level 11 -> level 12
 
 Para este nivel nos dice que la contraseña esta siendo rotada en 13 posiciones, para poder entender esto les dare una explicaion acerca del cifrado cesar, ya que asi podriamos entender mejor el comando que vamos a usar.
 
-## Cifrado Cesar:
+### Cifrado Cesar:
 
 Vamos a utilizar la palabra "hola" de prueba y la vamos a rotar en 5 posiciones, y la forma en la que lo vamos a hacer es la siguiente:
 
 teniendo en cuenta que tenemos la palabra hola, vamos a posicionar la letra inicial en el abecedario, quedando como la posicion de la 'M' en 0 y pasamos a contar 5 letras en adelante, llegando hasta la letra 'M', esto significa que vamos a intercambiar la letra 'H' con la 'M' y repetimos el proceso en cada letra vamos a empezar desde cero, quedando asi "_hola_" en forma cifrada "_mtpf_"
 
-![Caesar Chiper]((img/level11/CaesarCode.png))
+![Caesar-Chiper](img/level11/CaesarCode.png)
 
 Si queremos decodificar el texto simplemente aplicamos todo al inversa, empezamos desde la letra "_M_" y contamos en reversa hasta llegar a 5, y podemos ver que es hasta la letra "_H_" y repetimos el proceso para las siguientes letras
 
@@ -310,7 +309,7 @@ Ahora quiero explicar que es exactamente los parametros del comando `tr`.
 
 Aplicando los mismo para el letras minisculas y lo mismo para el siguiente parametro del comando tr. Le damos enter y podemos observar la contraseña
 
-![password]((/img/level11/pass.png))
+![password](/img/level11/pass.png)
 
 
 # Level 12 -> Level 13
@@ -321,7 +320,6 @@ En este nivel nos especifica que vamos a trabajar con un archivo hexdump, un hex
 Entonces vamos a empezar un **hexdump** _(Volcado hexadecimal)_ es una visualizacion de los datos de un archivo. Si leemos el contenido del archivo tendremos lo siguiente:
 
 ```bash
-
 00000000: 1f8b 0808 dcaa 7366 0203 6461 7461 322e  ......sf..data2.
 00000010: 6269 6e00 0141 02be fd42 5a68 3931 4159  bin..A...BZh91AY
 00000020: 2653 5946 b21b 1500 001c 7fff dcff d2ff  &SYF............
@@ -374,5 +372,4 @@ Lo que nos indica con que archivo estamos lidiando es lo que sigue despues de lo
 ![format](/img/level12/Table.png)
 
 
-. . .
 
