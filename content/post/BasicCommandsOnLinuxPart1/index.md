@@ -234,3 +234,145 @@ dando la contraseña en cuestion y nos pasamos al siguiente nivel.
 
 # Level 9 -> 10
 
+Para este nivel nos indica que la contraseña se encuentra almacenada en un archivo "_data.txt_" y la contraseña se encuentra ubicada seguida de las unicas palabras que son humanamente legibles.
+
+Lo que nos dice esto es que si leemos el contenido del archivo lo que vamos a encontrar es texto que no se entiende, entonces lo que vamos a hacer es usar el comando `strings`:
+
+Contenido del archivo:
+
+![file-data](/img/level8/data.png)
+
+`strings`: Este comando nos listara todas las partes del archivo que son texto.
+
+![strings_command](/img/level8/strings.png)
+
+Podemos ver que nos ha filtrado las cadenas que son de texto, y aunque en su mayoría no se entiende, podemos ver una que dice “the”, y como el nivel nos decia, que la contraseña estaba en un valor con signos de igual, así que filtraremos con grep las lineas que tengan simbolos de igual:
+
+`strings data.txt | grep "===="`
+
+Vemos que nos a dado la contraseña, pero de igual manera podemos aplicar mas modificaciones a nuestro comando para obtener un texto mas claro y simplemnte sea la contraseña, por ejemplo:
+
+Usando el comando `string data.txt | grep "====" | tail 1` hacemos que unicamente nos de la parte de de la ultima linea, ahora tambien haciendo esto podemos jugar de nuevo con el comando `awk` con el uso de parametros, entonces vamos a decirle a agregarle a nuestra salida que unicamente queremos el ultimo parametro que es donde se encuentra la contraseña, quedando asi el comando: 
+
+`string data.txt | grep "====" | tail -1 | awk 'NF{print$NF}'`
+
+Y esto nos dara la contraseña.
+
+![pass](/img/level9/pass.png)
+
+
+flag _(checkpoint)_: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+
+
+# Level 10 -> level 11
+
+Ahora este nivel es bastante facil ya que unicamente nos indica que hay que decodificar un archivo que contiene texto en base64, por lo tanto unicamente vamos a utilizar el comando `base64 -d`, el parametro -d quiere decir "decode"
+
+por lo tanto el el comando seria el siguiente:
+
+`cat data.txt | base64 -d`
+
+Y como podemos ver tenemos la contraseña, nos dirigimos al siguiente nivel.
+
+
+![password](/img/level10/pass.png)
+
+# Level 11 -> level 12
+
+Para este nivel nos dice que la contraseña esta siendo rotada en 13 posiciones, para poder entender esto les dare una explicaion acerca del cifrado cesar, ya que asi podriamos entender mejor el comando que vamos a usar.
+
+## Cifrado Cesar:
+
+Vamos a utilizar la palabra "hola" de prueba y la vamos a rotar en 5 posiciones, y la forma en la que lo vamos a hacer es la siguiente:
+
+teniendo en cuenta que tenemos la palabra hola, vamos a posicionar la letra inicial en el abecedario, quedando como la posicion de la 'M' en 0 y pasamos a contar 5 letras en adelante, llegando hasta la letra 'M', esto significa que vamos a intercambiar la letra 'H' con la 'M' y repetimos el proceso en cada letra vamos a empezar desde cero, quedando asi "_hola_" en forma cifrada "_mtpf_"
+
+![Caesar Chiper]((img/level11/CaesarCode.png))
+
+Si queremos decodificar el texto simplemente aplicamos todo al inversa, empezamos desde la letra "_M_" y contamos en reversa hasta llegar a 5, y podemos ver que es hasta la letra "_H_" y repetimos el proceso para las siguientes letras
+
+![Decode](/img/CaesarDecode.png)
+
+
+Bueno una vez entenido esto pasamos de nuevo a resolver el nivel de bandit; Vamos a leer el contenido del archivo y ahora sabiendo que este texto hay que decodificarlo usando 13 posiciones vamos a usar el comando `tr`. 
+
+`tr`: es utilizado para eliminar caracteres o traducirlos de una entrada.
+
+El comando a utilizar es el siguiente:
+
+`cat data.txt | tr '[G-ZA-Fg-za-f]' '[T-ZA-St-za-s]'`
+
+Ahora quiero explicar que es exactamente los parametros del comando `tr`.
+
+* `[G-ZA-Fg-za-f]`: Esto es el conjunto de caracteres que quiero traducir:
+    * `G-Z`: Todos los caracteres desde la 'G' hasta la 'Z'
+    * `A-F`: Todos los caracteres desde la 'A' hasta la 'F'
+
+Aplicando los mismo para el letras minisculas y lo mismo para el siguiente parametro del comando tr. Le damos enter y podemos observar la contraseña
+
+![password]((/img/level11/pass.png))
+
+
+# Level 12 -> Level 13
+
+
+En este nivel nos especifica que vamos a trabajar con un archivo hexdump, un hexdump es un archivo que se ha comprimido varias veces, entonces para este nivel nos pide crear un directorio en la ruta `/tmp` para poder mover el archivo a la carpeta creada, tambien indica que hay que cambiarle el nombre al archivo.
+
+Entonces vamos a empezar un **hexdump** _(Volcado hexadecimal)_ es una visualizacion de los datos de un archivo. Si leemos el contenido del archivo tendremos lo siguiente:
+
+```bash
+
+00000000: 1f8b 0808 dcaa 7366 0203 6461 7461 322e  ......sf..data2.
+00000010: 6269 6e00 0141 02be fd42 5a68 3931 4159  bin..A...BZh91AY
+00000020: 2653 5946 b21b 1500 001c 7fff dcff d2ff  &SYF............
+00000030: f96f b6bf 0fd6 d7ff b7bf bffd a5fe 3fef  .o............?.
+00000040: b6de 9fff bebe ffbc cfef f7ff b001 3b16  ..............;.
+00000050: 51d0 0191 a1a0 68c9 a000 000d 321a 0680  Q.....h.....2...
+00000060: 0d00 000d 000c 4c4c 101a 0006 8006 8000  ......LL........
+00000070: 6834 1ea1 a699 3d4f 46a7 a880 0000 0034  h4....=OF......4
+00000080: 0000 681a 1a32 34da 80d0 1a68 c803 4003  ..h..24....h..@.
+00000090: 4193 2794 d1a3 4f41 1ea0 1a6d 41ea 0000  A.'...OA...mA...
+000000a0: d1a0 6800 6800 74d1 a1a3 236a 0343 4d06  ..h.h.t...#j.CM.
+000000b0: 41a0 0193 40d0 0006 81a6 8068 34d0 1a00  A...@......h4...
+000000c0: 0034 f483 2000 341a 1a07 a8d1 ea00 01ea  .4.. .4.........
+000000d0: 7a40 d341 11a3 2206 8c3e 78ef 6b88 f36a  z@.A.."..>x.k..j
+000000e0: d1e9 00a8 22a8 54de d2cb 05f7 589c afb2  ....".T.....X...
+000000f0: 57d7 5466 402c e6e8 c692 14f8 77e6 c3a4  W.Tf@,......w...
+00000100: 8f56 b2e9 14a3 4b69 6c34 6632 0c50 6d95  .V....Kil4f2.Pm.
+00000110: 8dbd cd71 b0a1 4dae 0e49 a568 74aa 7111  ...q..M..I.ht.q.
+00000120: 8fa6 5c3c 1dcf 8384 9db0 c5f7 a31d f97d  ..\<...........}
+00000130: 5b02 0708 b1eb cb42 4024 131a 0be7 e8df  [......B@$......
+00000140: 26fb d4c1 0fda ea8f 13a0 fdf5 ff60 811d  &............`..
+00000150: b030 b5f5 b627 7a27 32c7 084f bde4 40e6  .0...'z'2..O..@.
+00000160: 5528 d67c 9000 fa43 8547 d5b9 0aa2 0c84  U(.|...C.G......
+00000170: 0849 ad45 ea52 a830 863e beb3 4cbb a8e3  .I.E.R.0.>..L...
+00000180: 7a94 470d 0865 0935 3546 5167 f791 7f81  z.G..e.55FQg....
+00000190: 9d54 275a 5125 d043 720a 8328 a05c 6507  .T'ZQ%.Cr..(.\e.
+000001a0: 29d7 445d 3287 9444 396a 09c0 2c66 04f2  ).D]2..D9j..,f..
+000001b0: d12a 8c12 5122 48b2 b594 b43c bcc5 e44d  .*..Q"H....<...M
+000001c0: 045d 32df b558 6088 2c19 4e83 7102 9018  .]2..X`.,.N.q...
+000001d0: f052 147e bc75 a772 ff8b 156d 4f2b 8c73  .R.~.u.r...mO+.s
+000001e0: f7b1 344b aba4 0b3c 89a0 2434 4501 d86f  ..4K...<..$4E..o
+000001f0: 0ad9 6dd2 8543 d008 d3fa 2e8f d86a 743c  ..m..C.......jt<
+00000200: 4996 19b5 ac0a 110c aa40 4edf 4e6f 0ed4  I........@N.No..
+00000210: dc9f 1a07 d343 1328 a9c1 34ba e4d2 d1e8  .....C.(..4.....
+00000220: 626c 4701 aa5d 75d5 e0b3 ee16 6218 5d04  blG..]u.....b.].
+00000230: 991d f752 c613 bfa0 8664 9bb1 0dbf e775  ...R.....d.....u
+00000240: ba89 1487 72b9 28c1 df81 8665 4082 27ff  ....r.(....e@.'.
+00000250: 1772 4538 5090 46b2 1b15 8195 ba71 4102  .rE8P.F......qA.
+00000260: 0000                                     ..
+
+
+```
+
+Para saber exactamente de que archivo se trata tenemos que verificar los magic numbers. Estos numeros magicos son bytes agrupados que indican el tipo al que pertenece un archivo, para encontrar los numeros magicos nos dirigimos a la primera linea del contenido del archivo, la cual es la siguiente:
+
+`00000000: 1f8b 0808 dcaa 7366 0203 6461 7461 322e  ......sf..data2.`
+
+Lo que nos indica con que archivo estamos lidiando es lo que sigue despues de los numeros '0', podemos observar que es `1f8b`, Si buscamos a que archivo pertenece este numero magico nos saldra que es de un archivo con formato gzip, lo que nos dice que se trata de un archivo con extencion `.gz``
+
+![format](/img/level12/Table.png)
+
+
+. . .
+
