@@ -290,7 +290,7 @@ teniendo en cuenta que tenemos la palabra hola, vamos a posicionar la letra inic
 
 Si queremos decodificar el texto simplemente aplicamos todo al inversa, empezamos desde la letra "_M_" y contamos en reversa hasta llegar a 5, y podemos ver que es hasta la letra "_H_" y repetimos el proceso para las siguientes letras
 
-![Decode](/img/CaesarDecode.png)
+![Decode](/img/level11/CaesarDecode.png)
 
 
 Bueno una vez entenido esto pasamos de nuevo a resolver el nivel de bandit; Vamos a leer el contenido del archivo y ahora sabiendo que este texto hay que decodificarlo usando 13 posiciones vamos a usar el comando `tr`. 
@@ -312,7 +312,7 @@ Aplicando los mismo para el letras minisculas y lo mismo para el siguiente param
 ![password](/img/level11/pass.png)
 
 
-# Level 12 -> Level 13
+## Level 12 -> Level 13
 
 
 En este nivel nos especifica que vamos a trabajar con un archivo hexdump, un hexdump es un archivo que se ha comprimido varias veces, entonces para este nivel nos pide crear un directorio en la ruta `/tmp` para poder mover el archivo a la carpeta creada, tambien indica que hay que cambiarle el nombre al archivo.
@@ -371,5 +371,116 @@ Lo que nos indica con que archivo estamos lidiando es lo que sigue despues de lo
 
 ![format](/img/level12/Table.png)
 
+Una vez sabemos esto, nos dirigimos a la carpeta tmp donde nos copiaremos el archivo. Vamos a aplicarle el comando `xxd` con el parametro `-r`, quedando asi el comando: `cat data | xxd | xxd -r`
 
+* El comando `xxd -r`: Convierte el contenido hexadecimal a su forma binaria original.
 
+Por ejemplo: Nosotros tenemos esta cadena "Hola que tal" y le aplicamos el comando xxd nos permite ver la cadena en hexadecimal: 
+
+`echo "Hola que tal" | xxd`
+
+Pero ahora si hacemos 
+
+`echo "Hola que tal" | xxd | xxd -r`
+
+Nos tendira que revertir al texto original. Ahora si unicamente queremos quedarnos con la parte hexadecimal tendriamos que aplicarle otro parametro al comando xxd, el cual es el siguiente:
+
+`echo "Hola que tal" | xxd -ps` 
+
+![ejemplo](/img/level12/ejemplo.png)
+
+Ahora nos pasamos a nuestro archivo y lo primero que nos interesa es que es todo ese texto, entonces nos dirigimos a la ruta /tmp que fue donde creamos nuestra carpeta de trabajo para este nivel y copiamos ahi el archivo, lo vamos a copiar con la extencion **.hex**, quedando asi el comando: `cp ~/data.txt data.hex`.
+Una vez hecho eso ejecutamos el comando `xxd -r data.hex` vamos a observar que nos dara simbolos raros y esto claramente no nos dice muy bien de que archivo se trata, entonces lo que vamos a hacer es migrar todo este output a un archivo y esto lo haremos de la siguiente manera: 
+
+`xdd -r data.hex > data` 
+
+Bien y ahora con el comando `file` vamos a verificar que tipo de arhcivo es, y como se puede ver se trata de un gzip,
+
+![ejemplo-1](/img/level12/hexdump.png)
+
+### Instalacion de herramientas 7z y xxd
+
+Lo que vamos a hacer a continuacion es usar el comando `7z`, esta herramienta nos permite descomprimir archivos ya que es universal, nos ahorramos escribir comandos como `tar-xf, gunzip, bzip2` etc. Y otra cosa importante es que 7z nos permite listar el contenido de un archivo comprimido, con el parametro 'l'. Una cosa a aclarar es que 7z no viene instalado en el servidor de over the wire, por lo que tendremos que migrar todo a nuestro entorno.
+
+Si no tiene instalado 7z o xxd en su sistema pueden escribir el siguiente comando para inslarlo: 
+* instalar 7z
+    * Para sistemas basados en debian `sudo apt install 7z`.
+    * Para sistemas basados en arch: `sudo pacman -S p7zip` 
+* Instalar xxd
+    * Para sistemas basados en debian `sudo apt install xxd`.
+    * Para sistemas basados en arch: `sudo pacman -S tinyxxd`
+
+Como en las intrucciones de over the wire se nos indica que un comprimido se comprimio varias veces pues vamos a automatizar el poceso de descomprimir los archivos esto para evitarnos hacer el mismo proceso para cada archivo manualmente.
+
+### Script para descomprimir archivos.
+
+Bien una vez en nuestro entorno y ya con las herramientas instaladas, vamos a copiar el contenido antes visto y lo pegamos en un archivo con extencion ".hex", despues copiamos todo el output a otro archivo llamado "data", Una vez llegamos al mismo punto que en el servidor de over the wire empezamos con el script, 
+
+Creamos el archivo usando `touch` y le damos permisos de ejecution con `chmod +x` y escribimos lo siguiente
+
+```bash
+#!/bin/bash/
+
+name_decompressed=$(7z l data.gzip | grep "Name" -A 2 | tail -1 | awk 'NF{print$NF}')
+7z x data.gzip > /dev/null 2>&1
+
+while true; do
+    7z l $name_decompressed > /dev/null 2>&1
+
+    if [ $? -eq 0 ]; then
+        decompressed_next=$(7z l $name_decompressed | grep "Name" -A 2 | tail -1 | awk 'NF{print$NF}')
+        7z x $name_decompressed > /dev/null 2>&1 && name_decompressed=$decompressed_next
+    else
+        cat $name_decompressed
+        exit 1
+    fi
+done
+```
+
+Aqui la explicacion de que hace cada linea de codigo:
+
+* `name_decompressed=$(7z l data.gzip | grep "name" -A 2 | tail -1 | awk 'NF{print$NF}')`
+    * `7z l data.gzip`: Es utilizado para listar el contenido del archivo con el parametro 'l'.
+    
+    ![ejemplo-2](/img/level12/ejemplo2.png)
+
+    * `grep "Name" -A 2`: Filtra las lineas que coniene la palabra "Name" y muestra ademas las dos lineas siguientes despues de encontrar la palabra "Name".
+
+    ![ejemplo-2.1](/img/level12/ejemplo2-1.png)
+    
+    * `tail -1`: Muestra la ultima linea de la salida generada por `grep`.
+
+    ![ejemplo-2.2](/img/level12/ejemplo2-2)
+
+    * `àwk NF{print$NF}`: Se utiliza para imprimir el ultimo campo de las lineas, esto se usa para extraer el nombre del archivo siguiente a descomprimir.
+
+    ![ejemplo-2.3](/img/level12/ejemplo2-3)
+
+* `7z x data.gzip > /dev/null 2>&1`: Esta line adescomprime nuestro primer archivo
+    * `> /dev/null 2>&1`: Redirige la salida estandar **STDOUT** al `/dev/null`, es STDOUT descarta cualquier output, añadiendo esta operacion `2>&1`, lo que hace que sea **STDERR**, antes habiamos usardo el estandar **STDOUT** que solo descarta los mensajes de errores porque colocabamos `2>/dev/null` que lo hace diferente.
+
+* `while true; do`: inicia un bucle infinito el cual se cierra con `done`.
+
+* `7z l "$name_descompressed" > /dev/null 2>&1`: Esta listando el contenido del primer archivo descomprimido
+
+* `if [ $? -eq 0 ]; then`; Esta linea verifica el comando de salida ejecutado recientemente, para validar si es verdadero o falso.
+    * `$?`: Es una variable en bash que contiene el ultimo codigo de estado, puede ser cero o uno.
+    * `-eq 0`: Comprar que el codigo de salida sea igual a 0, en la mayoria de casos es un codigo de estado verdadero.
+
+* `7z x "$name_decompressed" > /dev/null 2>&1 && name_decompressed=$decompressed_next`: Descomprime el archivo actual (`$name_decompressed`). Si la descompresión tiene éxito (comando retorna 0), actualiza name_decompressed con el nombre del próximo archivo descomprimido (`$decompressed_next`).
+
+```bash
+    else
+        cat "$name_decompressed"
+        exit 1
+    fi
+```
+Si el comando `7z l "$name_decompressed"` no tuvo éxito (código de salida distinto de 0):
+* `cat "$name_decompressed"`: Muestra el contenido del archivo descomprimido actual.
+* `exit 1`: Termina el script con un código de salida 1, indicando un error.
+
+Y asi es como podemos obtener la contraseña sin tener que descomprimir todos los archivos manualmente, procedemos a irnos al siguiente nivel.
+
+![ejemplo-1](/img/level12/pass.png)
+
+## Level 13 -> level 14
