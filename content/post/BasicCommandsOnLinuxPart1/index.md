@@ -450,11 +450,11 @@ Aqui la explicacion de que hace cada linea de codigo:
     
     * `tail -1`: Muestra la ultima linea de la salida generada por `grep`.
 
-    ![ejemplo-2.2](/img/level12/ejemplo2-2)
+    ![ejemplo-2.2](/img/level12/ejemplo2-2.png)
 
     * `àwk NF{print$NF}`: Se utiliza para imprimir el ultimo campo de las lineas, esto se usa para extraer el nombre del archivo siguiente a descomprimir.
 
-    ![ejemplo-2.3](/img/level12/ejemplo2-3)
+    ![ejemplo-2.3](/img/level12/ejemplo2-3.png)
 
 * `7z x data.gzip > /dev/null 2>&1`: Esta line adescomprime nuestro primer archivo
     * `> /dev/null 2>&1`: Redirige la salida estandar **STDOUT** al `/dev/null`, es STDOUT descarta cualquier output, añadiendo esta operacion `2>&1`, lo que hace que sea **STDERR**, antes habiamos usardo el estandar **STDOUT** que solo descarta los mensajes de errores porque colocabamos `2>/dev/null` que lo hace diferente.
