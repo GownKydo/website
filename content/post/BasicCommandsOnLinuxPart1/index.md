@@ -346,7 +346,7 @@ Y esto nos dara la contraseña.
 ![pass](/img/level9/pass.png)
 
 
-flag _(checkpoint)_: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+> flag _(checkpoint)_: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 
 
 ### Level 10 -> level 11
@@ -589,5 +589,24 @@ y haciendo esto vemos que accedemos como bandit14, entonces nos dirigimos al arc
 
 ![](/img/level13/password.png)
 
-# Level 14 > Level 15
+### Level 14 > Level 15
+
+Este nivel se va a centar en conexiones por TCP, lo que nos dice en el este nivel es que la contraseña puede ser capturada proporcionando la contraseña del nivel actual por el puerto 30000 del localhost
+
+Bueno entonces con eso nosotros ya identificamos que el puerto 30000 esta abierto y para comprobarlo vamos a lanzar una cadena por ese puerto:
+
+`echo '' > /dev/tcp/127.0.0.1/30000`
+
+Posterior a esto podemos ver que no nos devuelve nada y si imprimimos el codigo de estado podemos ver que nos da un codigo de estado exitoso, entonces confirmamos que el puerto esta abierto 
+
+Ahora lo que vamos a hacer es mandarle la contraseña de nuestro usuario bandit14, ahora vamos a hacerlo, ara esta ocacion usaremos el comando `nc`, quedando de la siguiente manera
+
+`nc bandit.labs.overthewire.org 30000`
+
+damos enter e ingresamos la contraseña y como podemos ver nos dara la contraseña.
+
+![ejemplo](/img/level14/password.png)
+
+
+> flag _(checkpoint)_: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
 
