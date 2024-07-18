@@ -80,7 +80,7 @@ Los comandos para buscar archivos o directorios como su nombre lo indica nos ayu
     * `grep "word" file_name` - Nos permite buscar palabras dentro de archivo
     * `find /path/to/find -name file_or_dir_name`- Buscar archivos por nombres haciendo uso de la base de datos en nuestro sistema
 
-> Mas adelante exploraremos mas usos del comando find para hacer busquedas mucho mas eficacez.
+> Más adelante exploraremos otros usos del comando find para realizar búsquedas de manera aún más eficiente.
 
 
 ## Process Managment and System information
@@ -198,7 +198,7 @@ Si seguimos los pasos hasta aquí, ya tendremos listados todos los archivos y no
 
 ![level-4](img/level4/level4.png)
 
-### Level 5 -> 6
+### Level 5 -> level 6
 
 Para este nivel, las instrucciones mencionan que el archivo que guarda la contraseña está en algún lugar dentro del directorio "inhere" y tiene las siguientes propiedades:
 
@@ -234,7 +234,7 @@ Ambas maneras nos daran la contraseña, pero de igual forma puedes seguir buscan
 
 Una vez obtuvimos la contraseña nos vamos para el siguiente nivel.  
 
-### Level 6 -> 7
+### Level 6 -> level 7
 
 Las instrucciones de este nivel son bastante similares a las del nivel anterior. Nos indican que la contraseña está guardada en algún lugar dentro del servidor. Por lo tanto, el archivo donde se encuentra la flag para el siguiente nivel tiene las siguientes propiedades:
 
@@ -267,7 +267,7 @@ dandonos como resultado el archivo que buscabamos, simplemente le hacemos un `ca
 
 ![ejemplo-1.1](/img/level6/password.png)
 
-### Level 7 -> 8
+### Level 7 -> level 8
 
 Este nivel es muy simple, para esta parte ya pasamoa a la busqueda dentro de archivos, por lo que el nivel nos lo da entender, en las instrucciones se especifica que la contraseña esta almacenada dentro de un archivo llamado "_data.txt_" la contraseña es la siguiente a la palabra "_millionth_", entonces para completar este nivel vamos a usar el comando `grep`.
 
@@ -297,7 +297,7 @@ Y nos da el mismo resultado que el anterior, la unica diferencia es la instrucci
 
 Nos pasamos al siguiente nivel.
 
-### Level 8 -> 9
+### Level 8 -> level 9
 
 Para este nivel nos indica que la contraseña esta guardada en el archivo "_data.txt_" y nos indica que es la unica linea que no se repite, si nosotros verificamos el contenido que hay dentro vamos a observar que nada tiene sentido no podemos saber cual es la contraseña, entonces lo que vamos a hacer es usar el comando `uniq` combinado con el comando `sort`.
 
@@ -317,7 +317,7 @@ dando la contraseña en cuestion y nos pasamos al siguiente nivel.
 
 ![ejemplo-2](/img/level8/pass.png)
 
-### Level 9 -> 10
+### Level 9 -> level 10
 
 Para este nivel nos indica que la contraseña se encuentra almacenada en un archivo "_data.txt_" y la contraseña se encuentra ubicada seguida de las unicas palabras que son humanamente legibles.
 
@@ -574,3 +574,20 @@ Y asi es como podemos obtener la contraseña sin tener que descomprimir todos lo
 ![ejemplo-1](/img/level12/pass.png)
 
 ### Level 13 -> level 14
+
+En este nivel se nos esta indicando que la contraseña esta guardada en la ruta `/etc/bandit_pass/bandit14`, pero esta contraseña solo puede leerla el usuario _"bandit14"_, entonces se nos dara una clave ssh para poder acceder como _bandit14_.
+
+![ejemplo-1](/img/level13/problem.png)
+
+Entonces haremos lo siguiente:
+
+`ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220`
+
+Nosotros ya sabemos que tenemos una clave ssh privada y con el comando que le acabamos de pasar le especificamos nos queremos conectar a el usuario bandit14 si tener que usar una contraseña, porque la llave privada generada ya actua como una contraseña para entrar como el usuario bandit14.
+
+y haciendo esto vemos que accedemos como bandit14, entonces nos dirigimos al archivo y podremos ver la contraseña.
+
+![](/img/level13/password.png)
+
+# Level 14 > Level 15
+
