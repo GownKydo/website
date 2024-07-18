@@ -13,15 +13,102 @@ image = "wallpaper.jpg"
 
 En esta ocasión, como se menciona en el título, vamos a adentrarnos en el mundo de Linux. Este post está dirigido a aquellos que son nuevos en este sistema operativo, con el fin de ayudarles y guiarlos en el uso de la terminal sin temor a romper algo con algún comando.  
 
-Este post será muy práctico, y para ello me guiaré de una página que considero increíble para aprender sobre los comandos en Linux. Para dar un breve resumen, esta página consiste en un juego de desafios en seguridad informatica. Tendrás que usar comandos en Linux para encontrar un archivo .txt donde se encuentra una contraseña para un usuario. A medida que subes de nivel, la dificultad aumenta. Para avanzar, deberás encontrar una "flag" para cada usuario, lo que representa los diferentes niveles y la flag la contraseña de acceso a los mismos.
+Este post será muy práctico ya que nos vamos a abrir una terminar y vamos a ir probando los comandos, yo se los explicare paso a paso y la descripcion de cada uno y es importante que se para complementar los comandos basicos que aprenderemos en esta primera parte haremos esto todavia mas practico y practicaremos en una pagina considero increíble para aprender sobre los comandos en Linux un poco mas a fondo, lo cual es fundamental para saber acerca de linux.
+
+Para dar un breve resumen, esta página consiste en un juego de desafios en seguridad informatica. Tendrás que usar comandos en Linux para encontrar un archivo .txt donde se encuentra una contraseña para un usuario. A medida que subes de nivel, la dificultad aumenta. Para avanzar, deberás encontrar una "flag" para cada usuario, lo que representa los diferentes niveles y la flag la contraseña de acceso a los mismos.
 
 Espero que este post te sea de gran ayuda y te anime a explorar más sobre el fascinante mundo de Linux. ¡Empecemos!
+
+
+## File Commands
+
+Los comandos de archivos, los cuales nos sirven para poder navegar atravez de la terminal y de igual forma crear, mover, renombrar, listar, eliminar etc.
+
+Esta primera parte son los comandos fundamentales para empezar con el uso de una terminal.
+
+* Comandos para archivos y directorios:
+
+    * `ls` - Lista los directorios y archivos en la ubicacion que te encuentras
+    * `ls -l` - Lista los directorios y archivos con un formato mas amplio, informacion de los mismos
+    * `ls -a` - Lista todos los archivos y directorios incluyendo los que esten ocultos
+
+    * `cd /path/to/directory` - Te permite entrar o salir de una carpeta
+    * `cd ..` - Te permite salir del directorio actual en el que te encuentas.
+
+    * `pwd` - Muestra la ubicacion actual en la que te encuentras dentro de un directorio
+
+    * `touch file_name` - Crea un archivo
+    * `mkdir dir_name` - Crear un directorio en la ruta actual en la que te encuentras
+    * `rm` - Eliminar un archivo 
+    * `rm -r` - Elimina una carpeta
+    * `mv old_name new_name` - Renombra un archivo o directorio
+    * `mv file_or_dir /path/to/move`  - Mueve un archivo o directorio a una carpeta
+
+    * `cat file_name` - Muestra el contenido de un archivo
+    * `cp file_name /path/to/copy` - Copia un archivo a una ruta
+    * `cp -r dir_name /path/to/copy` - Copia un directorio a una ruta 
+
+
+## File permisions
+
+Los permisos de archivo se refieren a los derechos y restricciones que se asignan a archivos y directorios, estos permisos determinan quién puede leer, escribir y ejecutar un archivo o directorio. Hay tres tipos básicos de permisos **_lectura(r)(4), escritura(w)(2) y ejecucion(x)(1)_**
+
+* Comandos:
+    * `chmod +x file_name` - Asigna el permiso de ejecucion usando el identificador por letras.
+    * `chmod 111 file_name` - Asigna el permiso de ejecucion de acuerdo al sistema binario.
+    * `chown user:group file_name` - Cambia el propietario y grupo de un archivo o directorio
+
+
+## ssh commands
+
+Los comandos de SSH son herramientas fundamentales para gestionar conexiones seguras entre computadoras a través de una red. Permiten iniciar sesiones remotas, transferir archivos de manera segura y configurar túneles para el acceso seguro a servicios de red.
+
+Estos comandos son esenciales para administrar sistemas de forma remota de manera segura y eficiente, facilitando tareas como la gestión de archivos, la ejecución de comandos en máquinas remotas, y la configuración y mantenimiento de servicios a través de conexiones encriptadas.
+
+* Comandos basicos para hacer una conexion por ssh:
+    * `ssh user@host` - conectarnos a un host como usuario
+    * `ssh-keygen` - Se usa para generar una clave privada y una clave publica 
+    * `ssh -p port user@host` - Conectarnos a un host como un usuario mediante un puerto en especifico
+    * `ssh-copy-id user@host` - Copia tu llave publica al servidor remoto para registrar tu login
+
+
+## Searching files or directories
+
+Los comandos para buscar archivos o directorios como su nombre lo indica nos ayudar a encontrar mucho mas rapido el directorio o archivo desde nuestra terminal de una manera mas rapida sin tener que navegar hasta la ruta en la que se encuentra
+
+* comandos de busqueda:
+    * `grep "word" file_name` - Nos permite buscar palabras dentro de archivo
+    * `find /path/to/find -name file_or_dir_name`- Buscar archivos por nombres haciendo uso de la base de datos en nuestro sistema
+
+> Mas adelante exploraremos mas usos del comando find para hacer busquedas mucho mas eficacez.
+
+
+## Process Managment and System information
+
+La gestión de procesos se refiere al conjunto de técnicas y herramientas utilizadas para controlar y supervisar los procesos que se ejecutan en un sistema operativo. Esto incluye actividades como la creación, terminación, pausa, reanudación y monitoreo de procesos.
+
+* Comandos:
+    * `ps` - Muestra los procesos activos en tiempo real
+    * `ps aux | grep process_name` -  Busca procesos por el nombre
+    * `top` - Muestra todos los procesos activos
+    * `kill pid` - Cierra los procesos usando un pid(numero del proceso)
+    * `killall process_name` - Cierra todos los procesos que se llamen por el nombre especificado
+
+    * `date` - Muestra la fecha y hora actual configurada en tu sistema
+    * `uname -a` - Muestra informacion del sistema y del kernel
+    * `df -h` - Muestra el espacio en el disco duro del sistema
+    * `du -sh dir_name` - Muestra espacio que consume un directorio
+
+
+No te preocupes si no has entendido algunos de los comandos antes mencionados o incluso si no logras memorizarlos. Recuerda igual darte un descanso y luego seguir repasando. Más adelante estaré explicando cómo usar cada uno de los comandos mencionados y notarán que existen muchas formas de aplicar estos comandos. No te rindas, que aquí viene lo interesante con los niveles de _OverTheWire_.
+
+## Over The Wire 
 
 Nos diriguimos a la siguiente pagina [over the wire](https://overthewire.org/wargames/bandit/), nos llevara a esta pagina:
 
 ![Menu](/img/level0/bandit0Menu.png)
 
-## Level 0 -> Level 1
+### Level 0 -> Level 1
 
 Aquí puedes leer más sobre lo que trata Bandit y en qué consiste. Nos dirigiremos al nivel 0, donde podemos ver las instrucciones para acceder como bandit0 y conectarnos al servidor mediante el comando SSH. Una vez que hemos leído las instrucciones, pasamos al siguiente nivel. En el siguiente nivel, podemos observar que nos dan las siguientes instrucciones.
 
@@ -35,7 +122,7 @@ Una vez dentro del servidor, comprobamos que somos el usuario bandit0 con el com
 
 ![level-0](/img/level0/level0.png)
 
-## Level 1 -> Level 2
+### Level 1 -> Level 2
 
 Para el siguiente nivel, vamos a acceder como bandit1. Vamos a usar el mismo comando que usamos anteriormente con bandit0, pero cambiando el usuario. El comando es el siguiente: `ssh bandit1@bandit.labs.overthewire.org -p 2220`. La única diferencia será el número del usuario, todo lo demás se mantiene igual. Accedemos y una vez que nos pida la contraseña pegamos la que habíamos guardado anteriormente en nuestro portapapeles.
 
@@ -59,7 +146,7 @@ Y podemos observamos que de cualquiera de estas maneras obtenemos la contraseña
 
 Aqui conluimos con este nivel, nos salimos y accedemos al siguiente.
 
-## Level 2 -> level 3
+### Level 2 -> level 3
 
 ![instructions](/img/level2/instructions.png)
 
@@ -75,7 +162,7 @@ Cabe aclarar que este comando es mejor usarlo cuando sabemos que solo existe un 
 
 Ahora que tenemos la contraseña nos dirigimos al siguiente nivel.
 
-## Level 3 -> Level 4
+### Level 3 -> Level 4
 
 Para este nivel la contraseña esta guardada en un archivo oculto dentro del directorio "inhere"
 
@@ -83,7 +170,7 @@ Este nivel es muy simple, si listamos el contenido de la carpeta con el comando 
 
 ![Level-3](/img/level3/download.png)
 
-## Level 4 -> level 5
+### Level 4 -> level 5
 
 Para este nivel, se nos indica que la contraseña está guardada en un archivo humanamente legible, dentro del directorio "inhere".
 
@@ -111,7 +198,7 @@ Si seguimos los pasos hasta aquí, ya tendremos listados todos los archivos y no
 
 ![level-4](img/level4/level4.png)
 
-## Level 5 -> 6
+### Level 5 -> 6
 
 Para este nivel, las instrucciones mencionan que el archivo que guarda la contraseña está en algún lugar dentro del directorio "inhere" y tiene las siguientes propiedades:
 
@@ -147,7 +234,7 @@ Ambas maneras nos daran la contraseña, pero de igual forma puedes seguir buscan
 
 Una vez obtuvimos la contraseña nos vamos para el siguiente nivel.  
 
-## Level 6 -> 7
+### Level 6 -> 7
 
 Las instrucciones de este nivel son bastante similares a las del nivel anterior. Nos indican que la contraseña está guardada en algún lugar dentro del servidor. Por lo tanto, el archivo donde se encuentra la flag para el siguiente nivel tiene las siguientes propiedades:
 
@@ -180,7 +267,7 @@ dandonos como resultado el archivo que buscabamos, simplemente le hacemos un `ca
 
 ![ejemplo-1.1](/img/level6/password.png)
 
-## Level 7 -> 8
+### Level 7 -> 8
 
 Este nivel es muy simple, para esta parte ya pasamoa a la busqueda dentro de archivos, por lo que el nivel nos lo da entender, en las instrucciones se especifica que la contraseña esta almacenada dentro de un archivo llamado "_data.txt_" la contraseña es la siguiente a la palabra "_millionth_", entonces para completar este nivel vamos a usar el comando `grep`.
 
@@ -210,7 +297,7 @@ Y nos da el mismo resultado que el anterior, la unica diferencia es la instrucci
 
 Nos pasamos al siguiente nivel.
 
-## Level 8 -> 9
+### Level 8 -> 9
 
 Para este nivel nos indica que la contraseña esta guardada en el archivo "_data.txt_" y nos indica que es la unica linea que no se repite, si nosotros verificamos el contenido que hay dentro vamos a observar que nada tiene sentido no podemos saber cual es la contraseña, entonces lo que vamos a hacer es usar el comando `uniq` combinado con el comando `sort`.
 
@@ -230,7 +317,7 @@ dando la contraseña en cuestion y nos pasamos al siguiente nivel.
 
 ![ejemplo-2](/img/level8/pass.png)
 
-## Level 9 -> 10
+### Level 9 -> 10
 
 Para este nivel nos indica que la contraseña se encuentra almacenada en un archivo "_data.txt_" y la contraseña se encuentra ubicada seguida de las unicas palabras que son humanamente legibles.
 
@@ -262,7 +349,7 @@ Y esto nos dara la contraseña.
 flag _(checkpoint)_: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 
 
-## Level 10 -> level 11
+### Level 10 -> level 11
 
 Ahora este nivel es bastante facil ya que unicamente nos indica que hay que decodificar un archivo que contiene texto en base64, por lo tanto unicamente vamos a utilizar el comando `base64 -d`, el parametro -d quiere decir "decode"
 
@@ -276,11 +363,14 @@ Y como podemos ver tenemos la contraseña, nos dirigimos al siguiente nivel.
 ![password](/img/level10/pass.png)
 
 
-## Level 11 -> level 12
+> Recomiendo descansar aca e iniciar de nuevo desde el nivel 0 para intentar nuevas maneras de acceder a los niveles
+
+
+### Level 11 -> level 12
 
 Para este nivel nos dice que la contraseña esta siendo rotada en 13 posiciones, para poder entender esto les dare una explicaion acerca del cifrado cesar, ya que asi podriamos entender mejor el comando que vamos a usar.
 
-### Cifrado Cesar:
+#### Cifrado Cesar:
 
 Vamos a utilizar la palabra "hola" de prueba y la vamos a rotar en 5 posiciones, y la forma en la que lo vamos a hacer es la siguiente:
 
@@ -312,7 +402,7 @@ Aplicando los mismo para el letras minisculas y lo mismo para el siguiente param
 ![password](/img/level11/pass.png)
 
 
-## Level 12 -> Level 13
+### Level 12 -> Level 13
 
 
 En este nivel nos especifica que vamos a trabajar con un archivo hexdump, un hexdump es un archivo que se ha comprimido varias veces, entonces para este nivel nos pide crear un directorio en la ruta `/tmp` para poder mover el archivo a la carpeta creada, tambien indica que hay que cambiarle el nombre al archivo.
@@ -398,7 +488,7 @@ Bien y ahora con el comando `file` vamos a verificar que tipo de arhcivo es, y c
 
 ![ejemplo-1](/img/level12/hexdump.png)
 
-### Instalacion de herramientas 7z y xxd
+#### Instalacion de herramientas 7z y xxd
 
 Lo que vamos a hacer a continuacion es usar el comando `7z`, esta herramienta nos permite descomprimir archivos ya que es universal, nos ahorramos escribir comandos como `tar-xf, gunzip, bzip2` etc. Y otra cosa importante es que 7z nos permite listar el contenido de un archivo comprimido, con el parametro 'l'. Una cosa a aclarar es que 7z no viene instalado en el servidor de over the wire, por lo que tendremos que migrar todo a nuestro entorno.
 
@@ -412,7 +502,7 @@ Si no tiene instalado 7z o xxd en su sistema pueden escribir el siguiente comand
 
 Como en las intrucciones de over the wire se nos indica que un comprimido se comprimio varias veces pues vamos a automatizar el poceso de descomprimir los archivos esto para evitarnos hacer el mismo proceso para cada archivo manualmente.
 
-### Script para descomprimir archivos.
+#### Script para descomprimir archivos.
 
 Bien una vez en nuestro entorno y ya con las herramientas instaladas, vamos a copiar el contenido antes visto y lo pegamos en un archivo con extencion ".hex", despues copiamos todo el output a otro archivo llamado "data", Una vez llegamos al mismo punto que en el servidor de over the wire empezamos con el script, 
 
@@ -483,4 +573,4 @@ Y asi es como podemos obtener la contraseña sin tener que descomprimir todos lo
 
 ![ejemplo-1](/img/level12/pass.png)
 
-## Level 13 -> level 14
+### Level 13 -> level 14
