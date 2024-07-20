@@ -11,14 +11,13 @@ image = "wallpaper.jpg"
 +++
 
 
-En esta ocasión, como se menciona en el título, vamos a adentrarnos en el mundo de Linux. Este post está dirigido a aquellos que son nuevos en este sistema operativo, con el fin de ayudarles y guiarlos en el uso de la terminal sin temor a romper algo con algún comando.  
+En este artículo nos adentraremos en el mundo de Linux, ideal para quienes son nuevos en este sistema operativo. Aprenderemos a usar la terminal de manera segura y sin miedo a cometer errores con los comandos.
 
-Este post será muy práctico ya que nos vamos a abrir una terminar y vamos a ir probando los comandos, yo se los explicare paso a paso y la descripcion de cada uno y es importante que se para complementar los comandos basicos que aprenderemos en esta primera parte haremos esto todavia mas practico y practicaremos en una pagina considero increíble para aprender sobre los comandos en Linux un poco mas a fondo, lo cual es fundamental para saber acerca de linux.
+Vamos a practicar directamente en la terminal, paso a paso, explicando cada comando y su función. Utilizaremos una página especializada para practicar y aprender comandos básicos en Linux de manera efectiva.
 
-Para dar un breve resumen, esta página consiste en un juego de desafios en seguridad informatica. Tendrás que usar comandos en Linux para encontrar un archivo .txt donde se encuentra una contraseña para un usuario. A medida que subes de nivel, la dificultad aumenta. Para avanzar, deberás encontrar una "flag" para cada usuario, lo que representa los diferentes niveles y la flag la contraseña de acceso a los mismos.
+La página ofrece desafíos de seguridad informática donde usaremos comandos en Linux para encontrar contraseñas en archivos .txt. A medida que progreses, los desafíos se vuelven más difíciles, requiriendo encontrar una "flag" para avanzar de nivel.
 
-Espero que este post te sea de gran ayuda y te anime a explorar más sobre el fascinante mundo de Linux. ¡Empecemos!
-
+Espero que este artículo te sea útil y te anime a explorar más el fascinante mundo de Linux. ¡Empecemos!
 
 ## File Commands
 
@@ -609,4 +608,3 @@ damos enter e ingresamos la contraseña y como podemos ver nos dara la contrase�
 
 
 > flag _(checkpoint)_: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
-
