@@ -598,7 +598,7 @@ Bueno entonces con eso nosotros ya identificamos que el puerto 30000 esta abiert
 
 Posterior a esto podemos ver que no nos devuelve nada y si imprimimos el codigo de estado podemos ver que nos da un codigo de estado exitoso, entonces confirmamos que el puerto esta abierto 
 
-Ahora lo que vamos a hacer es mandarle la contraseña de nuestro usuario bandit14, ahora vamos a hacerlo, ara esta ocacion usaremos el comando `nc`, quedando de la siguiente manera
+Ahora lo que vamos a hacer es mandarle la contraseña de nuestro usuario bandit14, ahora vamos a hacerlo, para esta ocacion usaremos el comando `nc`, quedando de la siguiente manera
 
 `nc bandit.labs.overthewire.org 30000`
 
@@ -608,3 +608,18 @@ damos enter e ingresamos la contraseña y como podemos ver nos dara la contrase�
 
 
 > flag _(checkpoint)_: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+
+### Level 15 
+
+Este nivel es parecido al nivel anterior, lo que vamos, lo que podemos observar de principio si el comando que usamos anteriormente usando el comando nc por el puerto 30001 vemos que no nos da nada, si probamos conectarnos por telenet tampoco nos dara el acceso
+
+![](/img/level15/information.png)
+
+Entonces vamos a usar la herramienta **openssl** es una biblioteca para comunicaciones seguras a traves de redes, con una implementacion de protocolos criptograficos como por ejemplo usando **TLS**_(Transport Layer Security)_ y **SSL**_(Secure Sockets Layer)_
+
+Usando openssl y revisando un poco la documentacion del mismo, vamos a usar el parametro s_client para conectarnos como clientes usando openssl y no como si fueramos un servidor como lo haciamos por "telnet" o con "nc"
+
+El comando es el siguiente:
+```bash
+openssl s_client  127.0.0.1:3001
+```
