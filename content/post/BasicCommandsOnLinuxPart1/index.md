@@ -1,5 +1,5 @@
 +++
-title = 'Comandos Basicos en Linux - Parte 1'
+title = 'Comandos Basicos en Linux(Guia Completa)'
 description = "Introduccion para comenzar a usar sistemas GNU/Linux como todo un chad"
 date = 2024-01-10
 categories = [
@@ -11,7 +11,7 @@ image = "wallpaper.jpg"
 +++
 
 
-En este artículo nos adentraremos en el mundo de Linux, ideal para quienes son nuevos en este sistema operativo. Aprenderemos a usar la terminal de manera segura y sin miedo a cometer errores con los comandos.
+En este post nos adentraremos en el mundo de Linux, ideal para quienes son nuevos en este sistema operativo. Aprenderemos a usar la terminal de manera segura y sin miedo a cometer errores con los comandos.
 
 Vamos a practicar directamente en la terminal, paso a paso, explicando cada comando y su función. Utilizaremos una página especializada para practicar y aprender comandos básicos en Linux de manera efectiva.
 
@@ -19,7 +19,7 @@ La página ofrece desafíos de seguridad informática donde usaremos comandos en
 
 Espero que este artículo te sea útil y te anime a explorar más el fascinante mundo de Linux. ¡Empecemos!
 
-## File Commands
+## File Commands(Guia Rapida)
 
 Los comandos de archivos, los cuales nos sirven para poder navegar atravez de la terminal y de igual forma crear, mover, renombrar, listar, eliminar etc.
 
@@ -101,7 +101,7 @@ La gestión de procesos se refiere al conjunto de técnicas y herramientas utili
 
 No te preocupes si no has entendido algunos de los comandos antes mencionados o incluso si no logras memorizarlos. Recuerda igual darte un descanso y luego seguir repasando. Más adelante estaré explicando cómo usar cada uno de los comandos mencionados y notarán que existen muchas formas de aplicar estos comandos. No te rindas, que aquí viene lo interesante con los niveles de _OverTheWire_.
 
-## Over The Wire 
+## Over The Wire (Practica)
 
 Nos diriguimos a la siguiente pagina [over the wire](https://overthewire.org/wargames/bandit/), nos llevara a esta pagina:
 
@@ -611,15 +611,26 @@ damos enter e ingresamos la contraseña y como podemos ver nos dara la contrase�
 
 ### Level 15 
 
-Este nivel es parecido al nivel anterior, lo que vamos, lo que podemos observar de principio si el comando que usamos anteriormente usando el comando nc por el puerto 30001 vemos que no nos da nada, si probamos conectarnos por telenet tampoco nos dara el acceso
+Este nivel es parecido al nivel anterior, lo que vamos, lo que podemos observar de principio si el comando que usamos anteriormente usando el comando nc por el puerto 30001 vemos que no nos da nada, si probamos conectarnos por telenet tampoco nos dara el acceso, esto se debe a que ahora la comunicacion esta viajando por un un protocolo de encriptacion.
 
 ![](/img/level15/information.png)
 
-Entonces vamos a usar la herramienta **openssl** es una biblioteca para comunicaciones seguras a traves de redes, con una implementacion de protocolos criptograficos como por ejemplo usando **TLS**_(Transport Layer Security)_ y **SSL**_(Secure Sockets Layer)_
+Entonces vamos a usar la biblioteca **openssl** para comunicaciones seguras a traves de redes, con una implementacion de protocolos criptograficos como por ejemplo usando **TLS**_(Transport Layer Security)_ y **SSL**_(Secure Sockets Layer)_
 
-Usando openssl y revisando un poco la documentacion del mismo, vamos a usar el parametro s_client para conectarnos como clientes usando openssl y no como si fueramos un servidor como lo haciamos por "telnet" o con "nc"
+Usando openssl y revisando un poco la documentacion del mismo, vamos a usar el parametro s_client para conectarnos como clientes y no como si fueramos un servidor como lo haciamos por "telnet" o con "nc"
 
-El comando es el siguiente:
-```bash
-openssl s_client  127.0.0.1:3001
-```
+El comando es el siguiente: `openssl s_client -connect localhost:30001`
+
+Explicacion del comando: 
+
+1. **OpenSSL**: Nombre de la biblioteca y launcher de la misma para la biblioteca
+2. **s_client**: Este es una implementacion SSL/TLS de una conexion tranparente como cliente para acceder a un servidor de manera remota hablando de igual forma SSL/TLS lo que hace que pueda entender lo que estamos mandando por este canal.
+3. **-connect host:port**: Parametro de s_client para conectarnos usando un host y un puerto en especifico, si no establece el puerto tomara el de localhost por defecto.
+
+Una vez que le demos enter veremos lo siguiente, en este espacio solo copiaremos y pegamos la contraseña del nivel 15 y nos tiene que devolver la contraseña del nivel 16. Y aqui es como terminamos el nivel 15!
+
+![](/img/level15/password.png)
+
+# Level 16
+
+> building . . .
