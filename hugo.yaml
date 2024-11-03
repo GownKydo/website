@@ -7,25 +7,25 @@ copyright: Gerardo H. Gomez
 
 # Theme i18n support
 # Available values: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
-DefaultContentLanguage: en
+DefaultContentLanguage: es
 
 # Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
 # This will make .Summary and .WordCount behave correctly for CJK languages.
 hasCJKLanguage: false
 
 languages:
-#    es:
-#        languageName: Español
-#        title: Gerardo H. Gomez
-#        weight: 1
-#        params:
-#            description: Apasionado por la tecnología y la programación.
-    en:
-        languageName: English
+    es:
+        languageName: Español
         title: Gerardo H. Gomez
         weight: 2
         params:
-            description: Passionate about technology and programming
+            description: Apasionado por la tecnología y la programación.
+#    en:
+#        languageName: English
+#        title: Gerardo H. Gomez
+#        weight: 2
+#        params:
+#            description: Passionate about technology and programming
 #    zh-cn:
 #        languageName: 中文
 #        title: Gerardo H. Gomez
@@ -69,7 +69,7 @@ params:
 
     sidebar:
         emoji: 🍥
-        subtitle: Apasionado por la tecnologia y la programación.
+        subtitle: Writeups, guides and tips about technology.
         avatar:
             enabled: true
             local: true
