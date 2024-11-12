@@ -4,11 +4,11 @@ description = "Tips para comenzar a acortar codigo como todo un chad en programa
 date = 2024-11-03
 categories = [
     "Programming",
-    "C++"
 ]
 tags = [
     "competitive Programming",
     "Shortening Code",
+    "C++",
 ]
 image = "wallpaper.png"
 +++
@@ -126,3 +126,4 @@ Corresponde a esta operacion:
 std::cout << (3+3) * (3+3) << "\n"; // 36
 ```
 
+El uso de **tipos de datos** y **macros** en programación competitiva es fundamental para optimizar tanto el **rendimiento** como la **claridad** del código. Es importante saber elegir los tipos de datos adecuados para manejar mejor los recursos de memoria y asi evitar errores, mientras que las macros simplifican el código, mejoran su legibilidad y reducen la redundancia. Ambas prácticas permiten escribir soluciones más eficientes y menos propensas a fallos, lo cual es clave en competiciones donde el tiempo y la precisión son esenciales.
