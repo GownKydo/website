@@ -1,6 +1,6 @@
 ---
 title: About
-description: Redes, Scripts y Seguridad: ¡A darlo todo en el mundo tech!
+description: "Redes, Scripts y Seguridad: ¡A darlo todo en el mundo tech!"
 date: '2023-11-28'
 aliases:
   - about-us
