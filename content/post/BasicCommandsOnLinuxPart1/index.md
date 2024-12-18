@@ -4,7 +4,21 @@ description = "Introduccion para comenzar a usar sistemas GNU/Linux como todo un
 date = 2024-01-10
 categories = [
     "Linux",
-    "bash",
+    "Bash",
+    "Tutorial",
+    "Comandos",
+    "Sistemas Operativos",
+]
+tags = [
+    "Linux",
+    "Bash",
+    "Comandos",
+    "Terminal",
+    "Sistemas Operativos",
+    "Guía",
+    "Automatización",
+    "Productividad",
+    "Desarrollo",
 ]
 
 image = "wallpaper.jpg"

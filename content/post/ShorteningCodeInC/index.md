@@ -4,11 +4,18 @@ description = "Tips para comenzar a acortar codigo como todo un chad para progra
 date = 2024-11-03
 categories = [
     "Programming",
+    "C++",
+    "Competitive Programming",
+    "Tips y Trucos",
 ]
 tags = [
-    "competitive Programming",
-    "Shortening Code",
+    "Competitive Programming",
     "C++",
+    "Shortening Code",
+    "Optimización",
+    "Eficiencia",
+    "Algoritmos",
+    "Trucos de Programación",
 ]
 image = "wallpaper.png"
 +++

@@ -3,13 +3,20 @@ title = 'Administracion de tareas cron'
 date = 2024-06-06
 categories = [
     "Linux",
+    "Bash",
+    "Automatización",
     "CyberSecurity",
-    "bash",
+    "Sistemas Operativos",
 ]
 tags = [
-    "process analysis",
-    "programming",
-    "algorithms",
+    "Cron",
+    "Automatización",
+    "Linux",
+    "Scripting",
+    "Tareas Programadas",
+    "Administración de Sistemas",
+    "Seguridad Informática",
+    "DevOps",
 ]
 image = "CronJob.jpg"
 +++
