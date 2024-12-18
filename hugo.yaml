@@ -1,8 +1,8 @@
-baseurl: https://corniergown.com
+baseurl: https://gownkydo.tech
 languageCode: en-es
 theme: stack
 paginate: 3
-title: CornierGown | Blog
+title: Gown Kydo | Blog
 copyright: Gerardo H. Gomez
 
 # Theme i18n support
