@@ -26,11 +26,11 @@ image = "Docker.png"
 +++
 
 
-# ¿Que es docker?
+## ¿Que es docker?
 
 Docker es una plataforma que permite crear, desplegar y ejecutar aplicaciones en **contenedores**. Los contenedores son entornos ligeros y aislados que incluyen todo lo necesario para ejecutar una aplicación (código, dependencias, configuraciones). Esto garantiza que las aplicaciones se ejecuten de manera consistente en cualquier entorno, sin importar el sistema operativo o la infraestructura.
 
-## Ventajas clave:
+### Ventajas clave:
 
 - **Portabilidad**: Docker garantiza que una aplicación se ejecute de la misma manera en cualquier entorno, ya que los contenedores incluyen todo lo necesario para la ejecución (código, dependencias, etc.). Esto facilita mover aplicaciones entre diferentes sistemas operativos y plataformas (como Windows, macOS, Linux, servidores, o la nube) sin problemas. 
 <br>
@@ -40,7 +40,7 @@ Docker es una plataforma que permite crear, desplegar y ejecutar aplicaciones en
 
 - **Eficiencia**: Docker es más eficiente que las máquinas virtuales (VM) porque comparte el núcleo del sistema operativo en lugar de ejecutar un sistema operativo completo para cada instancia. Esto hace que los contenedores sean más ligeros, rápidos de iniciar y con menos consumo de recursos, lo que permite ejecutar más aplicaciones en el mismo hardware.
 
-## Comparativas entre docker y una maquina vitual
+#### Comparativas entre docker y una maquina vitual
 
 |**Caracteristicas**|**Docker**|**Virutal Machine**|
 | --- | --- |---|
@@ -54,9 +54,9 @@ Docker es una plataforma que permite crear, desplegar y ejecutar aplicaciones en
 Docker facilita el desarrollo, pruebas y despliegue de aplicaciones, asegurando que funcionen de la misma manera en cualquier lugar.
 
 
-# Instalar docker en nuestro sistema
+## Instalar docker en nuestro sistema
 
-## Instalacion en debian y derivados
+### Instalacion en debian y derivados
 
 Si estás utilizando un sistema basado en Debian, como **Ubuntu** o **Linux Mint**, te proporcionaré una guía paso a paso para instalar Docker y verificar que todo esté funcionando correctamente.
 
@@ -87,7 +87,7 @@ apt upgrade && apt install docker
 
 5. **Verificar que se haya instalado correctamente y verificacion del estado de docker**
 
-## Instalacion en Arch y derivados
+### Instalacion en Arch y derivados
 
 Para empezar a aprender Docker en un sistema basado en Arch Linux, te proporcionaré una guía paso a paso para que puedas instalar y comenzar a usar Docker.
 
@@ -107,7 +107,7 @@ docker --version && systemctl status docker
 ```
 
 
-## Instalacion en sistemas basados en windows
+### Instalacion en sistemas basados en windows
 
 Si estás utilizando **Windows** y deseas instalar Docker, te proporcionaré una guía sencilla y clara para hacerlo. Docker es una herramienta popular para la creación y gestión de contenedores, y ahora puedes usarlo en tu máquina con Windows fácilmente.
 
@@ -148,7 +148,7 @@ Start-Process 'Docker Desktop Installer.exe' -Wait -ArgumentList 'install', '--b
 
 ```
 
-### Explicación:
+#### Explicación:
 
 - **`Start-Process`**: Lanza el proceso de instalación.
 - **`-Wait`**: Hace que PowerShell espere a que el proceso de instalación termine antes de continuar.
@@ -165,9 +165,9 @@ Cuando ejecutes este comando en PowerShell como administrador, Docker Desktop de
 > Si tu cuenta de administrador es diferente a la de tu usuario, deberas agregar tu usuario a el grupo de docker, para porder usarlo en otra cuenta ademas de root, este es el comando que se va a utlizar: `net localgroup docker-users <tu_user> /add`
 
 
-# Comandos basicos para usar docker
+## Comandos basicos para usar docker
 
-## Probando Docker
+### Probando Docker
 
 
 Primero verificamos el estatus del demonio de docker, eso lo verificamos con el siguiente comando:
@@ -184,7 +184,7 @@ De igual forma podemos verificar la version de docker con la que estamos trabaja
 docker --version
 ```
 
-### Modos de activacion de Docker
+#### Modos de activacion de Docker
 
 Si notamos que el demonio de docker esta inactivo simplemente lo activamos con el siguiente comando:
 
@@ -215,7 +215,7 @@ sudo systemctl disable docker
 Esto deshabilitará Docker en el inicio del sistema, lo que significa que deberás iniciarlo manualmente en cada reinicio, si lo deseas.
 
 
-## Funcionalidades de Docker
+### Funcionalidades de Docker
 
 Ejecuta el siguiente comando para verificar que Docker está funcionando correctamente; Este comando descargará una imagen de prueba y ejecutará un contenedor que imprimirá un mensaje de éxito si Docker está bien configurado.
 
@@ -231,7 +231,7 @@ docker run hello-world
 <br>
 - **Muestra un mensaje**: El contenedor ejecuta su aplicación (en este caso, una simple aplicación que imprime un mensaje) y luego termina su ejecución. Verás un mensaje similar al siguiente en la terminal:
 
-### Ver el uso de recursos
+#### Ver el uso de recursos
 
 Para ver el uso de recursos del sistema por parte de Docker (incluyendo contenedores, imágenes y volúmenes), puedes usar:
 
@@ -241,7 +241,7 @@ docker system df
 
 Este comando te mostrará el espacio utilizado por cada categoría (contenedores, imágenes, volúmenes).
 
-## Crear un contenedor 
+### Crear un contenedor 
 
 **Crear y ejecutar un contenedor Basico**
 Una vez que tienes la imagen de Ubuntu descargada, puedes crear y ejecutar un contenedor a partir de ella con el siguiente comando:
@@ -256,11 +256,11 @@ docker run -it ubuntu
 - `-t` (tty): Asigna un terminal para que puedas interactuar con el contenedor.
 - `Debian` es el nombre de la imagen que acabamos de descargar.
 
-### Construir una imagen de docker
+#### Construir una imagen de docker
 
 Si deseas crear un contenedor para tu proyecto, necesitarás construir una imagen personalizada a partir de tu aplicación y sus dependencias. A continuación, te muestro cómo hacerlo.
 
-#### Crear un archivo `Dockerfile`
+##### Crear un archivo `Dockerfile`
 
 Primero, necesitas un archivo `Dockerfile` en tu directorio raíz del proyecto. Este archivo describe los pasos para construir la imagen de docker, un `Dockerfile` típico podría verse así:
 
@@ -284,7 +284,7 @@ EXPOSE 5000
 CMD ["python", "run.py"]
 ```
 
-#### Construir la imagen de Docker
+##### Construir la imagen de Docker
 
 Una vez que tengas tu `Dockerfile`, debes construir la imagen utilizando el siguiente comando:
 
@@ -300,7 +300,7 @@ docker build -t <name> .
 
 Este comando creará una imagen Docker basada en la configuración definida en el `Dockerfile`.
 
-#### Ejecutar el contenedor
+##### Ejecutar el contenedor
 
 Una vez que la imagen se ha construido correctamente, puedes ejecutar un contenedor a partir de ella con:
 
@@ -314,7 +314,7 @@ docker run -p 5000:5000 <name>
 
 Al ejecutar este comando, Docker iniciará un contenedor basado en la imagen, ejecutará tu aplicación y podrás acceder a ella desde el navegador.
 
-## Ver los contenedores activos
+### Ver los contenedores activos
 
 Para ver qué contenedores están en ejecución, usa el siguiente comando:
 
@@ -328,7 +328,7 @@ Esto mostrará una lista de contenedores activos. Si el contenedor está detenid
 docker ps -a
 ```
 
-### Activar un contenedor
+#### Activar un contenedor
 
 tienes un contenedor que está detenido y deseas iniciarlo (activarlo), puedes usar el comando `docker start`. Para esto, necesitas el **ID** o **nombre** del contenedor, como por ejemplo el sigiente ejemplo:
 
@@ -336,7 +336,7 @@ tienes un contenedor que está detenido y deseas iniciarlo (activarlo), puedes u
 docker start <container_id_or_name>
 ```
 
-### Desactivar un contenedor 
+#### Desactivar un contenedor 
 
 Cuando termines de trabajar con un contenedor y quieras detenerlo, usa el siguiente comando:
 
@@ -350,7 +350,7 @@ Este comando detiene un contenedor en ejecución de manera segura, pero si el co
 docker kill <container_id_or_name>
 ```
 
-## Eliminar un contenedor
+### Eliminar un contenedor
 
 Si un contenedor ya no es necesario y deseas liberarlo de tu sistema, puedes eliminarlo con el siguiente comando:
 
@@ -371,7 +371,7 @@ docker rm -f $(docker ps -a -q)
 > Si intentas eliminar un contenedor que está en ejecución, Docker no te permitirá hacerlo hasta que lo detengas primero. Para eliminar contenedores activos de manera inmediata, puedes usar `docker rm -f`.
 
 
-# Conclusion
+## Conclusion
 
 Con estos pasos, habrás instalado y configurado Docker en tu sistema. Ahora puedes comenzar a trabajar con contenedores y explorar todo lo que Docker tiene para ofrecer!.
 
