@@ -1,6 +1,6 @@
 +++
 title = 'Shortening Code in C++'
-description = "Tips para comenzar a acortar codigo como todo un chad en programacion competitiva"
+description = "Tips para comenzar a acortar codigo como todo un chad para programacion competitiva"
 date = 2024-11-03
 categories = [
     "Programming",
