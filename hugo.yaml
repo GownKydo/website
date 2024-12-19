@@ -73,7 +73,7 @@ params:
         avatar:
             enabled: true
             local: true
-            src: img/profile-picture.png
+            src: img/profile-picture.jpg
 
     article:
         math: false
