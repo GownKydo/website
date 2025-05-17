@@ -1,7 +1,7 @@
 +++
 title = "Reversing Básico con SpookyPass"
 description = "En este reto de SpookyPass, con un simple comando podrás desvelar el misterio de la contraseña secreta."
-date = 2024-05-17
+date = 2025-05-17
 categories = [
     "Linux",
     "Bash",
@@ -16,8 +16,10 @@ tags = [
     "CTF",
     "Hack The Box",
 ]
-image = "machine.png"
+image = "htb.png"
 +++
+
+![Challenge](/content/post/SpookyPass/img/machine.png)
 
 La maquina SpookyPass trata de reversing, de manera muy sencilla pordemos usar el comando ``strings``
 
@@ -52,4 +54,4 @@ Y asi es como solucionamos la maquina.
 
 ### Referencias
 
-![Comandos Basicos para radare2](https://github.com/radareorg/radare2/blob/master/doc/intro.md)
+[Comandos Basicos para radare2](https://github.com/radareorg/radare2/blob/master/doc/intro.md)
