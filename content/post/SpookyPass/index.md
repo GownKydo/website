@@ -3,7 +3,6 @@ title = "Reversing Básico con SpookyPass"
 description = "En este reto de SpookyPass, con un simple comando podrás desvelar el misterio de la contraseña secreta."
 date = 2025-05-17
 categories = [
-    "Linux",
     "Bash",
     "Hack The Box",
     "Ciberseguridad",
@@ -19,7 +18,7 @@ tags = [
 image = "htb.png"
 +++
 
-![Challenge](/content/post/SpookyPass/img/machine.png)
+![Challenge](img/machine.png)
 
 La maquina SpookyPass trata de reversing, de manera muy sencilla pordemos usar el comando ``strings``
 
@@ -27,7 +26,7 @@ El comando ``strings`` nos servira para identificar las cadenas de texto en un b
 
 Entonces para resovler esta maquina simplemente ejecutamos el binario usando el comando `strings pass` y en algun punto encontraremos el siguiente texto: **s3cr3t_p455_f0r_gh05t5_4nd_gh0ul5** 
 
-![strings](/content/post/SpookyPass/img/strings.png)
+![strings](img/strings.png)
 
 ### Forma 2 de resolver el problema usando radare2
 
@@ -40,11 +39,11 @@ sudo pacman -S radare2
 
 con este tool vamos a poder ver todo lo que hay por detras, usando radare2 nos dara un prompt, por lo que vamos a escribir `aaa`, para comenzar a analizar el binario, nos dara este output:
 
-![Radare2](/content/post/SpookyPass/img/radare2.png)
+![Radare2](img/radare2.png)
 
 Una vez que hemos analizado el archivo, simplemente ponemos `v` para movernos a la vista y esto es lo que nos mostrara
 
-![Radare2-Respuestas](/content/post/SpookyPass/img/radare2_respuesta.png)
+![Radare2-Respuestas](img/radare2_respuesta.png)
 
 Una vez aqui solo es cuestion de bajar y buscar donde se encuentran las cadenas de texto, como por ejemplo el "Welcome inside".
 
