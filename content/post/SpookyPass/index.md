@@ -1,6 +1,6 @@
 +++
-title = "Reversing Básico con SpookyPass"
-description = "En este reto de SpookyPass, con un simple comando podrás desvelar el misterio de la contraseña secreta."
+title = "Hack The Box SpookyPass Challenge - Writeup"
+description = "El desafío “SpookyPass” de Hack The Box es una tarea de ingeniería inversa muy fácil, en la que debes analizar un ejecutable para encontrar la contraseña correcta y obtener acceso."
 date = 2025-05-17
 categories = [
     "Bash",
@@ -14,13 +14,30 @@ tags = [
     "Binarios",
     "CTF",
     "Hack The Box",
+    "chellenge",
 ]
 image = "htb.png"
 +++
 
 ![Challenge](img/machine.png)
 
-La maquina SpookyPass trata de reversing, de manera muy sencilla pordemos usar el comando ``strings``
+La maquina SpookyPass trata de reversing, pero y ¿Que es el reversing?.
+
+Bueno el reversing en ciberseguridad, también conocido como ingeniería inversa, es el proceso de analizar y descomponer un software o hardware con el objetivo de comprender su funcionamiento interno, identificar posibles debilidades o incluso descubrir cómo puede ser vulnerado.
+
+Ahora bien, la maquina nos proporciona un archivo que podemos descargar, vamos a descargarlo y lo movemos a una carpeta de trabajo para resolver este ejercicio mas comodamente.
+
+![Download file](img/download.png)
+
+Una vez tengamos el archivo vamos a ver de que se trata, y como es un archivo ejecutable procedemos a ejecutar el archivo.
+
+![Content file](img/file.png)
+
+Cuando ejecutas el binario proporcionado, se muestra un mensaje solicitando una contraseña. 
+
+El objetivo es analizar el programa para descubrir la contraseña correcta. Esto normalmente implica técnicas como inspeccionar el binario en busca de cadenas codificadas, analizar la lógica del programa usando herramientas como Ghidra o IDA, o depurar el ejecutable para rastrear su comportamiento. 
+
+El desafío está diseñado para ser sencillo, lo que lo convierte en un excelente punto de partida para quienes están aprendiendo ingeniería inversa, entonces para ello usaremos el comando **strings**.
 
 El comando ``strings`` nos servira para identificar las cadenas de texto en un binario, podemos, si la contraseña no esta cifrada, podremos ver cual es a travez del uso de este comando.
 
