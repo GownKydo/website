@@ -1,5 +1,6 @@
 +++
 title = 'Administracion de tareas cron'
+description = "Aprende a programar tareas automáticas en sistemas Linux usando cron jobs. Ideal para automatizar respaldos, scripts y otras tareas repetitivas desde la terminal."
 date = 2024-06-06
 categories = [
     "Linux",
