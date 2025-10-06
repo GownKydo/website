@@ -1,7 +1,7 @@
 +++
 title = 'Over The Wire (Bandit) - Parte 1'
 description = "Los Juegos de guerra que ofrece la comunidad OverTheWire pueden ayudarte a aprender y practicar conceptos de seguridad informatica o conceptos basicos de una forma divertida."
-date = 2025-08-05
+date = 2024-08-05
 categories = [
     "Linux",
     "Bash",
