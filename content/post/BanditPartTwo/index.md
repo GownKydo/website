@@ -1,7 +1,7 @@
 +++
 title = 'Over The Wire (Bandit) - Parte 2'
 description = "Los Juegos que ofrece OverTheWire pueden ayudarte a aprender y practicar conceptos de seguridad informatica o conceptos basicos de la terminal de una forma competitiva y divertida."
-date = 2024-04-16
+date = 2025-04-16
 categories = [
     "Linux",
     "Bash",
