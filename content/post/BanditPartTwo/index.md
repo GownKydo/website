@@ -71,7 +71,7 @@ Bueno una vez entenido esto pasamos de nuevo a resolver el nivel 11.
 
 Vamos a leer el contenido del archivo y hay que decodificarlo usando 13 posiciones, para automatizar esto y no hacerlo manualmente vamos a usar el comando `tr`.
 
-### ¿Qué es tr?
+##### ¿Qué es tr?
 
 El comando tr (abreviatura de translate o transform) se utiliza para:
 
@@ -277,7 +277,7 @@ damos enter e ingresamos la contraseña y como podemos ver nos dara la contrase�
 
 ![ejemplo](img/level14/password.png)
 
-### Level 15 
+### level 15 --> level 16
 
 Este nivel es parecido al nivel anterior, lo que vamos, lo que podemos observar de principio si el comando que usamos anteriormente usando el comando nc por el puerto 30001 vemos que no nos da nada, si probamos conectarnos por telenet tampoco nos dara el acceso, esto se debe a que ahora la comunicacion esta viajando por un un protocolo de encriptacion.
 
