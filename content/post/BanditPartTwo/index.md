@@ -122,7 +122,9 @@ Entonces vamos a empezar un **hexdump** _(Volcado hexadecimal)_ es una visualiza
 
 Para saber exactamente de que archivo se trata tenemos que verificar los magic numbers. Estos numeros magicos son bytes agrupados que indican el tipo al que pertenece un archivo, para encontrar los numeros magicos nos dirigimos a la primera linea del contenido del archivo, la cual es la siguiente:
 
-`00000000: 1f8b 0808 dcaa 7366 0203 6461 7461 322e  ......sf..data2.`
+```bash
+00000000: 1f8b 0808 dcaa 7366 0203 6461 7461 322e  ......sf..data2.
+```
 
 Lo que nos indica con que archivo estamos lidiando es lo que sigue despues de los numeros '0', podemos observar que es `1f8b`, Si buscamos a que archivo pertenece este numero magico nos saldra que es de un archivo con formato gzip, lo que nos dice que se trata de un archivo con extencion `.gz``
 
@@ -279,7 +281,7 @@ damos enter e ingresamos la contraseña y como podemos ver nos dara la contrase�
 
 ### level 15 --> level 16
 
-Este nivel es parecido al nivel anterior, lo que vamos, lo que podemos observar de principio si el comando que usamos anteriormente usando el comando nc por el puerto 30001 vemos que no nos da nada, si probamos conectarnos por telenet tampoco nos dara el acceso, esto se debe a que ahora la comunicacion esta viajando por un un protocolo de encriptacion.
+Este nivel es parecido al nivel anterior, pero si probamos conectarnos por telenet tampoco nos dara el acceso, esto se debe a que ahora la comunicacion esta viajando por un protocolo de encriptacion.
 
 ![ejmplo](img/level15/information.png)
 
@@ -287,7 +289,11 @@ Entonces vamos a usar la biblioteca **openssl** para comunicaciones seguras a tr
 
 Usando openssl y revisando un poco la documentacion del mismo, vamos a usar el parametro s_client para conectarnos como clientes y no como si fueramos un servidor como lo haciamos por "telnet" o con "nc"
 
-El comando es el siguiente: `openssl s_client -connect localhost:30001`
+El comando es el siguiente: 
+
+```bash
+openssl s_client -connect localhost:30001
+```
 
 Explicacion del comando: 
 
@@ -299,6 +305,58 @@ Una vez que le demos enter veremos lo siguiente, en este espacio solo copiaremos
 
 ![](/img/level15/password.png)
 
-# Level 16
+### Level 16 --> level 17
+
+Para este nivel vamos a utilizar la herramienta de **nmap**, y explicare cuales son las indicaciones para resolver este nivel
+
+1. **Buscar puertos abiertos**: Hay un rango de puertos (del 31000 al 32000) en los que necesitas comprobar si alguno tiene un "servidor" funcionando que esta en espera de recibir conexiones.
+
+2. **Identificar los que usan SSL/TLS**: Una vez que encuentres los puertos que tienen un servidor escuchando, el siguiente paso es identificar cuáles usan una conexión segura (SSL/TLS) y cuáles no.
+
+3. **Encontrar el servidor correcto**: Solo uno de esos servidores te va a dar las credenciales para el siguiente nivel. Los demás simplemente van a devolverte lo mismo que les envíes, como si te estuvieran ignorando.
+
+
+#### ¿Que es nmap?
+
+Nmap permite a los administradores de red encontrar qué dispositivos se están ejecutando en su red, descubrir puertos y servicios abiertos y detectar vulnerabilidades.
+
+Primero, Nmap te ayuda a mapear rápidamente una red sin comandos ni configuraciones sofisticados. También admite comandos simples (por ejemplo, para verificar si un host está activo) y secuencias de comandos complejas a través del motor de secuencias de comandos Nmap.
+
+Otras características de Nmap incluyen:
+
+1. Capacidad para reconocer rápidamente todos los dispositivos, incluidos servidores, enrutadores, conmutadores, dispositivos móviles, etc. en redes únicas o múltiples.
+2. Ayuda a identificar los servicios que se ejecutan en un sistema, incluidos los servidores web, los servidores DNS y otras aplicaciones comunes. Nmap también puede detectar versiones de aplicaciones con una precisión razonable para ayudar a detectar vulnerabilidades existentes.
+3. Nmap puede encontrar información sobre el sistema operativo que se ejecuta en los dispositivos. Puede proporcionar información detallada, como las versiones del sistema operativo
+4. Durante la auditoría de seguridad y el escaneo de vulnerabilidades, puedes usar Nmap para atacar sistemas usando scripts existentes del motor de scripting de Nmap.
+
+Una vez ya sabiendo esto nos vamos a pasar a la practica, para ello vamos a escribir el siguiente comando:
+
+```bash
+nmap --open -T5 -n -v -p31000-32000 127.0.0.1
+```
+
+Ahora procedemos a la explicacion del comando:
+
+* **nmap** — herramienta que hace el escaneo
+* **--open** — solo muestra los puertos que están abiertos
+* **-T5** — le dice a nmap que vaya muy rápido. Útil para ahorrar tiempo, pero puede ser más ruidoso.
+* **-n** — evita resolver nombres de dominio; usa solo direcciones IP para ir más rápido.
+* **-v** — modo verboso, te da información adicional mientras escanea.
+* **-p31000-32000** — el rango de puertos que queremos revisar.
+* **127.0.0.1** — la dirección localhost (tu propia máquina), es decir, escanea en el equipo donde estás trabajando.
+
+Entonces nos dara el siguiente resultado:
+
+![](img/bandit16/ports.jpg)
+
+Ahora para esta parte debemos de tomarlo de forma aleatoria y para ello vamos a hacerlo usando el comando **ncat** y tener la contrasela de bandit 16, si no la tienes copiada y no recuerdas cual era, simplemente lee el archivo que esta en esta ruta: `/etc/bandit_pass/bandit16`, aqui es a la suerte y deberas escoger el puerto que se vea mas convincente o puedes probar uno por uno
+
+Comando: `ncat --ssl localhost 31790`
+
+En este caso lo encontramos y le damos la contraseña de bandit 16 y podemos notar que nos devuelve una llave privada, por lo tanto tendremos que usarla con **ssh**
+
+![](img/bandit16/key.jpg)
+
+Bueno ahora nos vamos a crear una carpeta temporal, por lo tanto nos dirigimos a la ruta **/tmp/** y creamos una carpeta y dentro un archivo con la extencion **.key**, procedemos asignarle permisos **700** y ahora estamos listos para poder acceder al bandit 17 usando ssh
 
 > building . . .
